@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "installCommand": "npm install",
+  "outputDirectory": ".next",
+  "regions": ["fra1"],
+  "env": {
+    "FASTAPI_URL": "@fastapi_url",
+    "NEXT_PUBLIC_APP_URL": "@next_public_app_url",
+    "MOCK_AGENTS": "@mock_agents"
+  }
+}

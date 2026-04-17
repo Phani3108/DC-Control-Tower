@@ -1,0 +1,198 @@
+{
+  "$schema": "./Jurisdiction[]",
+  "lastUpdated": "2026-04-17",
+  "sourceNotes": "Plain-English summaries hand-curated. Agents are constrained to cite only these cite_ids — no free-form URLs.",
+  "jurisdictions": [
+    {
+      "code": "AE",
+      "country": "United Arab Emirates",
+      "primaryRegulations": ["Federal Decree-Law 45/2021 (PDPL)", "UAE AI Ethics (draft)"],
+      "sovereigntyTier": "light",
+      "dataLocalization": {
+        "personalData": false,
+        "sensitiveSectors": ["health"],
+        "modelWeights": false,
+        "crossBorderTransferRequiresApproval": false
+      },
+      "aiActScope": {
+        "highRiskDefinition": false,
+        "transparencyObligations": true,
+        "supervisoryBody": "UAE Data Office"
+      },
+      "maxFine": { "currency": "AED", "amount": 5000000, "ref": "AE-PDPL-FINE-1" },
+      "rules": [
+        { "citeId": "AE-PDPL-01", "text": "Cross-border personal data transfer permitted to jurisdictions with adequate protection or via standard contractual clauses.", "sourceUrl": "https://u.ae/en/information-and-services/justice-safety-and-the-law/data-protection-regulations", "severity": "gating" },
+        { "citeId": "AE-PDPL-02", "text": "Health-sector data must be processed within UAE per sector-specific laws.", "sourceUrl": "https://u.ae/en/information-and-services/justice-safety-and-the-law/data-protection-regulations", "severity": "blocking" }
+      ]
+    },
+    {
+      "code": "SA",
+      "country": "Saudi Arabia",
+      "primaryRegulations": ["PDPL (Royal Decree M/19 of 2021)", "SDAIA AI Ethics Framework"],
+      "sovereigntyTier": "restrictive",
+      "dataLocalization": {
+        "personalData": true,
+        "sensitiveSectors": ["health", "finance", "government"],
+        "modelWeights": true,
+        "crossBorderTransferRequiresApproval": true
+      },
+      "aiActScope": {
+        "highRiskDefinition": true,
+        "transparencyObligations": true,
+        "supervisoryBody": "SDAIA"
+      },
+      "maxFine": { "currency": "SAR", "amount": 5000000, "ref": "SA-PDPL-FINE-1" },
+      "rules": [
+        { "citeId": "SA-PDPL-01", "text": "Personal data of KSA residents must be stored and processed within the Kingdom unless SDAIA approves transfer.", "sourceUrl": "https://sdaia.gov.sa/en/SDAIA/about/Files/PersonalDataEnglish.pdf", "severity": "blocking" },
+        { "citeId": "SA-SDAIA-01", "text": "High-risk AI systems require SDAIA registration and periodic audit.", "sourceUrl": "https://sdaia.gov.sa/en/", "severity": "gating" },
+        { "citeId": "SA-PDPL-02", "text": "Model weights trained on KSA data may be treated as regulated assets.", "sourceUrl": "https://sdaia.gov.sa/en/", "severity": "gating" }
+      ]
+    },
+    {
+      "code": "ES",
+      "country": "Spain",
+      "primaryRegulations": ["EU AI Act", "GDPR", "LOPDGDD"],
+      "sovereigntyTier": "moderate",
+      "dataLocalization": {
+        "personalData": false,
+        "sensitiveSectors": ["health", "finance"],
+        "modelWeights": false,
+        "crossBorderTransferRequiresApproval": true
+      },
+      "aiActScope": {
+        "highRiskDefinition": true,
+        "transparencyObligations": true,
+        "supervisoryBody": "AESIA (Spain)"
+      },
+      "maxFine": { "currency": "EUR", "amount": 35000000, "ref": "EU-AIA-FINE-1" },
+      "rules": [
+        { "citeId": "EU-AIA-01", "text": "High-risk AI systems must complete a conformity assessment before deployment.", "sourceUrl": "https://artificialintelligenceact.eu/", "severity": "gating" },
+        { "citeId": "EU-GDPR-01", "text": "Cross-border transfers outside EEA require SCCs or adequacy decision.", "sourceUrl": "https://gdpr.eu/", "severity": "gating" }
+      ]
+    },
+    {
+      "code": "GR",
+      "country": "Greece",
+      "primaryRegulations": ["EU AI Act", "GDPR", "Law 4624/2019"],
+      "sovereigntyTier": "moderate",
+      "dataLocalization": {
+        "personalData": false,
+        "sensitiveSectors": ["health", "finance"],
+        "modelWeights": false,
+        "crossBorderTransferRequiresApproval": true
+      },
+      "aiActScope": {
+        "highRiskDefinition": true,
+        "transparencyObligations": true,
+        "supervisoryBody": "Hellenic DPA"
+      },
+      "maxFine": { "currency": "EUR", "amount": 35000000, "ref": "EU-AIA-FINE-1" },
+      "rules": [
+        { "citeId": "EU-AIA-01", "text": "High-risk AI systems must complete a conformity assessment before deployment.", "sourceUrl": "https://artificialintelligenceact.eu/", "severity": "gating" },
+        { "citeId": "EU-GDPR-01", "text": "Cross-border transfers outside EEA require SCCs or adequacy decision.", "sourceUrl": "https://gdpr.eu/", "severity": "gating" }
+      ]
+    },
+    {
+      "code": "TR",
+      "country": "Turkey",
+      "primaryRegulations": ["KVKK (Law 6698)"],
+      "sovereigntyTier": "moderate",
+      "dataLocalization": {
+        "personalData": false,
+        "sensitiveSectors": ["health", "finance"],
+        "modelWeights": false,
+        "crossBorderTransferRequiresApproval": true
+      },
+      "aiActScope": {
+        "highRiskDefinition": false,
+        "transparencyObligations": true,
+        "supervisoryBody": "KVKK Board"
+      },
+      "maxFine": { "currency": "TRY", "amount": 5000000, "ref": "TR-KVKK-FINE-1" },
+      "rules": [
+        { "citeId": "TR-KVKK-01", "text": "Cross-border transfer of personal data requires KVKK Board authorization absent adequacy.", "sourceUrl": "https://www.kvkk.gov.tr/", "severity": "gating" }
+      ]
+    },
+    {
+      "code": "ID",
+      "country": "Indonesia",
+      "primaryRegulations": ["UU PDP (Law 27/2022)", "PP 71/2019 (electronic systems)"],
+      "sovereigntyTier": "moderate",
+      "dataLocalization": {
+        "personalData": true,
+        "sensitiveSectors": ["finance", "public-sector"],
+        "modelWeights": false,
+        "crossBorderTransferRequiresApproval": true
+      },
+      "aiActScope": {
+        "highRiskDefinition": false,
+        "transparencyObligations": true
+      },
+      "maxFine": { "currency": "IDR", "amount": 5000000000, "ref": "ID-PDP-FINE-1" },
+      "rules": [
+        { "citeId": "ID-PDP-01", "text": "Public-sector and financial personal data must be stored in Indonesia.", "sourceUrl": "https://peraturan.bpk.go.id/", "severity": "blocking" },
+        { "citeId": "ID-PDP-02", "text": "Cross-border transfer requires adequate protection or consent.", "sourceUrl": "https://peraturan.bpk.go.id/", "severity": "gating" }
+      ]
+    },
+    {
+      "code": "TH",
+      "country": "Thailand",
+      "primaryRegulations": ["PDPA B.E. 2562"],
+      "sovereigntyTier": "moderate",
+      "dataLocalization": {
+        "personalData": false,
+        "sensitiveSectors": ["health"],
+        "modelWeights": false,
+        "crossBorderTransferRequiresApproval": true
+      },
+      "aiActScope": {
+        "highRiskDefinition": false,
+        "transparencyObligations": true
+      },
+      "maxFine": { "currency": "THB", "amount": 5000000, "ref": "TH-PDPA-FINE-1" },
+      "rules": [
+        { "citeId": "TH-PDPA-01", "text": "Cross-border transfer requires adequate protection standard or explicit consent.", "sourceUrl": "https://www.pdpc.or.th/", "severity": "gating" }
+      ]
+    },
+    {
+      "code": "US-VA",
+      "country": "United States (Virginia)",
+      "primaryRegulations": ["Virginia CDPA"],
+      "sovereigntyTier": "permissive",
+      "dataLocalization": {
+        "personalData": false,
+        "sensitiveSectors": [],
+        "modelWeights": false,
+        "crossBorderTransferRequiresApproval": false
+      },
+      "aiActScope": {
+        "highRiskDefinition": false,
+        "transparencyObligations": false
+      },
+      "maxFine": { "currency": "USD", "amount": 7500, "ref": "US-VA-CDPA-FINE-1" },
+      "rules": [
+        { "citeId": "US-VA-CDPA-01", "text": "Controllers of Virginia residents' personal data must honor consumer rights; no localization required.", "sourceUrl": "https://law.lis.virginia.gov/vacodefull/title59.1/chapter53/", "severity": "informational" }
+      ]
+    },
+    {
+      "code": "US-CA",
+      "country": "United States (California)",
+      "primaryRegulations": ["CCPA / CPRA"],
+      "sovereigntyTier": "permissive",
+      "dataLocalization": {
+        "personalData": false,
+        "sensitiveSectors": [],
+        "modelWeights": false,
+        "crossBorderTransferRequiresApproval": false
+      },
+      "aiActScope": {
+        "highRiskDefinition": false,
+        "transparencyObligations": true
+      },
+      "maxFine": { "currency": "USD", "amount": 7500, "ref": "US-CA-CCPA-FINE-1" },
+      "rules": [
+        { "citeId": "US-CA-CCPA-01", "text": "CCPA applies to CA residents' personal information; no data localization.", "sourceUrl": "https://oag.ca.gov/privacy/ccpa", "severity": "informational" }
+      ]
+    }
+  ]
+}

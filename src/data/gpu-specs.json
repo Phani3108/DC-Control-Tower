@@ -1,0 +1,72 @@
+{
+  "$schema": "./GPUSpec[]",
+  "lastUpdated": "2026-04-17",
+  "sourceNotes": "NVIDIA H100/H200/B200/GB200 spec sheets + AMD MI300X datasheet. See docs/DATA_SOURCES.md.",
+  "gpus": [
+    {
+      "sku": "H100",
+      "vendor": "NVIDIA",
+      "tdpW": 700,
+      "systemCount": 8,
+      "systemTdpKW": 10.2,
+      "rackDensityKW": 50,
+      "interconnect": "NVLink-4",
+      "memoryTBs": 0.08,
+      "memoryBandwidthTBps": 3.35,
+      "cooling": "air",
+      "referenceUrls": ["https://www.nvidia.com/en-us/data-center/h100/"]
+    },
+    {
+      "sku": "H200",
+      "vendor": "NVIDIA",
+      "tdpW": 700,
+      "systemCount": 8,
+      "systemTdpKW": 10.2,
+      "rackDensityKW": 50,
+      "interconnect": "NVLink-4",
+      "memoryTBs": 0.141,
+      "memoryBandwidthTBps": 4.8,
+      "cooling": "air",
+      "referenceUrls": ["https://www.nvidia.com/en-us/data-center/h200/"]
+    },
+    {
+      "sku": "B200",
+      "vendor": "NVIDIA",
+      "tdpW": 1000,
+      "systemCount": 8,
+      "systemTdpKW": 14.3,
+      "rackDensityKW": 70,
+      "interconnect": "NVLink-5",
+      "memoryTBs": 0.192,
+      "memoryBandwidthTBps": 8.0,
+      "cooling": "liquid-dlc",
+      "referenceUrls": ["https://www.nvidia.com/en-us/data-center/dgx-b200/"]
+    },
+    {
+      "sku": "GB200-NVL72",
+      "vendor": "NVIDIA",
+      "tdpW": 1200,
+      "systemCount": 72,
+      "systemTdpKW": 120,
+      "rackDensityKW": 130,
+      "interconnect": "NVLink-5",
+      "memoryTBs": 13.5,
+      "memoryBandwidthTBps": 576,
+      "cooling": "liquid-dlc",
+      "referenceUrls": ["https://www.nvidia.com/en-us/data-center/gb200-nvl72/"]
+    },
+    {
+      "sku": "MI300X",
+      "vendor": "AMD",
+      "tdpW": 750,
+      "systemCount": 8,
+      "systemTdpKW": 10.5,
+      "rackDensityKW": 55,
+      "interconnect": "InfinityFabric",
+      "memoryTBs": 0.192,
+      "memoryBandwidthTBps": 5.3,
+      "cooling": "air",
+      "referenceUrls": ["https://www.amd.com/en/products/accelerators/instinct/mi300/mi300x.html"]
+    }
+  ]
+}

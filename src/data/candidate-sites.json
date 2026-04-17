@@ -1,0 +1,117 @@
+{
+  "$schema": "./CandidateSite[]",
+  "lastUpdated": "2026-04-17",
+  "sourceNotes": "Five SEA + global candidate sites for M1 demo. Signals are blend of public data (IEA/Ember/USGS) and industry benchmarks from Castle Rock / Ramboll site-selection frameworks.",
+  "sites": [
+    {
+      "id": "johor",
+      "name": "Johor Bahru (Iskandar)",
+      "country": "Malaysia",
+      "countryCode": "MY",
+      "coordinates": [103.7618, 1.4927],
+      "targetMW": 500,
+      "priorSignals": {
+        "avgPowerCostUSDPerMWh": 78,
+        "renewableShare": 0.19,
+        "grid99PercentileOutageMin": 120,
+        "seismicPGA": 0.04,
+        "permittingMonths": 18,
+        "waterStressIndex": 0.35,
+        "latencyToBigIXms": 2.1,
+        "incentivesScore": 85,
+        "talentScore": 72,
+        "climateCoolingLoadKW": 88,
+        "politicalRiskScore": 22,
+        "hyperscalerProximityScore": 95
+      }
+    },
+    {
+      "id": "batam",
+      "name": "Batam (Nongsa Digital Park)",
+      "country": "Indonesia",
+      "countryCode": "ID",
+      "coordinates": [104.0305, 1.1304],
+      "targetMW": 500,
+      "priorSignals": {
+        "avgPowerCostUSDPerMWh": 95,
+        "renewableShare": 0.22,
+        "grid99PercentileOutageMin": 190,
+        "seismicPGA": 0.12,
+        "permittingMonths": 24,
+        "waterStressIndex": 0.42,
+        "latencyToBigIXms": 3.8,
+        "incentivesScore": 78,
+        "talentScore": 58,
+        "climateCoolingLoadKW": 92,
+        "politicalRiskScore": 30,
+        "hyperscalerProximityScore": 88
+      }
+    },
+    {
+      "id": "chonburi",
+      "name": "Chonburi (Thailand EEC)",
+      "country": "Thailand",
+      "countryCode": "TH",
+      "coordinates": [101.0141, 13.3611],
+      "targetMW": 500,
+      "priorSignals": {
+        "avgPowerCostUSDPerMWh": 110,
+        "renewableShare": 0.17,
+        "grid99PercentileOutageMin": 95,
+        "seismicPGA": 0.05,
+        "permittingMonths": 20,
+        "waterStressIndex": 0.50,
+        "latencyToBigIXms": 4.4,
+        "incentivesScore": 82,
+        "talentScore": 64,
+        "climateCoolingLoadKW": 90,
+        "politicalRiskScore": 28,
+        "hyperscalerProximityScore": 70
+      }
+    },
+    {
+      "id": "jakarta-ext",
+      "name": "Jakarta-2 Expansion (Cibitung)",
+      "country": "Indonesia",
+      "countryCode": "ID",
+      "coordinates": [107.0863, -6.2646],
+      "targetMW": 500,
+      "priorSignals": {
+        "avgPowerCostUSDPerMWh": 88,
+        "renewableShare": 0.24,
+        "grid99PercentileOutageMin": 160,
+        "seismicPGA": 0.22,
+        "permittingMonths": 14,
+        "waterStressIndex": 0.55,
+        "latencyToBigIXms": 5.1,
+        "incentivesScore": 80,
+        "talentScore": 62,
+        "climateCoolingLoadKW": 95,
+        "politicalRiskScore": 32,
+        "hyperscalerProximityScore": 80
+      }
+    },
+    {
+      "id": "bangkok-ext",
+      "name": "Bangkok Extension (Rayong)",
+      "country": "Thailand",
+      "countryCode": "TH",
+      "coordinates": [101.2816, 12.6802],
+      "targetMW": 500,
+      "priorSignals": {
+        "avgPowerCostUSDPerMWh": 118,
+        "renewableShare": 0.16,
+        "grid99PercentileOutageMin": 110,
+        "seismicPGA": 0.06,
+        "permittingMonths": 22,
+        "waterStressIndex": 0.48,
+        "latencyToBigIXms": 4.8,
+        "incentivesScore": 75,
+        "talentScore": 60,
+        "climateCoolingLoadKW": 91,
+        "politicalRiskScore": 30,
+        "hyperscalerProximityScore": 72
+      }
+    }
+  ]
+}

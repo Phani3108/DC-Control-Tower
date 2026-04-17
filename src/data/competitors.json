@@ -1,0 +1,67 @@
+{
+  "$schema": "./Competitor[]",
+  "lastUpdated": "2026-04-17",
+  "sourceNotes": "Public disclosures; pricing is anchored to industry benchmarks and spot colocation comparisons. Not a guarantee of vendor pricing.",
+  "competitors": [
+    {
+      "id": "equinix",
+      "name": "Equinix",
+      "type": "global-colo",
+      "reach": "33 countries · 260+ DCs",
+      "aiReadyMW": "limited — retrofit",
+      "pricePerMWhUSDBand": [160, 210],
+      "sustainabilityClaims": "100% renewable goal by 2030",
+      "tier": "III–IV",
+      "strengths": ["global footprint", "peering density", "enterprise trust"],
+      "weaknesses": ["price premium", "slower liquid-cooling rollout", "limited 100+ kW/rack"]
+    },
+    {
+      "id": "digital-realty",
+      "name": "Digital Realty",
+      "type": "global-colo",
+      "reach": "24 countries · 300+ DCs",
+      "aiReadyMW": "~150 MW published AI-dedicated",
+      "pricePerMWhUSDBand": [150, 200],
+      "sustainabilityClaims": "2030 net-zero operations",
+      "tier": "III–IV",
+      "strengths": ["scale", "carrier-neutral", "HD colocation"],
+      "weaknesses": ["pricing rigidity", "APAC footprint gaps"]
+    },
+    {
+      "id": "aws-direct",
+      "name": "AWS Direct",
+      "type": "hyperscaler-self",
+      "reach": "AWS regions globally",
+      "aiReadyMW": "— (consumed internally)",
+      "pricePerMWhUSDBand": [180, 260],
+      "sustainabilityClaims": "100% renewable by 2025",
+      "tier": "n/a",
+      "strengths": ["integrated services", "capacity", "ecosystem"],
+      "weaknesses": ["sovereignty posture", "price opacity", "lock-in"]
+    },
+    {
+      "id": "oracle-oci",
+      "name": "Oracle OCI Dedicated",
+      "type": "hyperscaler-self",
+      "reach": "46+ regions",
+      "aiReadyMW": "regional deployments + DAMAC partnership",
+      "pricePerMWhUSDBand": [170, 230],
+      "sustainabilityClaims": "100% renewable by 2025",
+      "tier": "n/a",
+      "strengths": ["sovereign cloud", "enterprise DB", "dedicated regions"],
+      "weaknesses": ["smaller ecosystem"]
+    },
+    {
+      "id": "ntt",
+      "name": "NTT Global Data Centers",
+      "type": "global-colo",
+      "reach": "20+ countries · 160+ DCs",
+      "aiReadyMW": "growing, APAC-heavy",
+      "pricePerMWhUSDBand": [155, 200],
+      "sustainabilityClaims": "2030 net-zero goal",
+      "tier": "III–IV",
+      "strengths": ["APAC depth", "financial stability", "Japan anchor"],
+      "weaknesses": ["ME footprint gaps"]
+    }
+  ]
+}
