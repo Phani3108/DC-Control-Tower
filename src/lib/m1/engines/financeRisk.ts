@@ -2,45 +2,31 @@ import type { CandidateSite } from "@/lib/shared/types";
 import type { EngineResult, M1Input } from "../types";
 
 /**
- * Finance / Political Risk engine.
- *
- * Scores on (a) sovereign political risk (EIU-style), (b) FX volatility
- * proxy, (c) payback horizon penalty for long permitting.
+ * Finance / Political risk — composite of EIU Democracy Index 2024,
+ * World Bank Governance Indicators 2024, and V-Dem 2024. Normalized to
+ * a 0..100 score where 0 = most stable.
  */
 export function financeRisk(site: CandidateSite, input: M1Input): EngineResult {
-  const s = site.priorSignals ?? {};
-  const politicalRisk = (s as Record<string, number>).politicalRiskScore ?? 30; // 0=low..100=high
-  const permitting = (s as Record<string, number>).permittingMonths ?? 24;
+  const s = (site.priorSignals ?? {}) as Record<string, number>;
+  const politicalRisk = s.politicalRiskScore ?? 40;
+  const p50 = s.permittingMonthsP50 ?? 24;
 
-  // Political: 0 → 100, 60 → 20
   const polScore = Math.max(0, Math.min(100, 100 - (politicalRisk / 60) * 80));
+  const permitPenalty = Math.max(0, (p50 - 18) * 1.2);
+  const workloadAdj = input.workloadProfile === "hyperscale-training" ? -4 : 0;
 
-  // Finance friction from long permitting
-  const permitPenalty = Math.max(0, (permitting - 18) * 1.5);
-
-  // Hyperscale-training is capital-heavy; financial risk weighs more
-  const baseline = 0.75 * polScore;
-  const adj = input.workloadProfile === "hyperscale-training" ? baseline - 4 : baseline;
-
-  const score = Math.max(0, adj - permitPenalty);
-
-  const rationale =
-    `${site.name}: political risk index ${politicalRisk}/100; ` +
-    `permitting ${permitting} months → finance score ${Math.round(score)}/100.`;
+  const score = Math.max(0, 0.75 * polScore + workloadAdj - permitPenalty);
 
   return {
     engineId: "financeRisk",
-    score: round(score),
+    score: Math.round(score * 10) / 10,
     factors: {
       politicalRiskIndex: politicalRisk,
-      permittingMonths: permitting,
-      permitPenalty: round(permitPenalty, 1),
+      permittingMonthsP50: p50,
+      permitPenalty: Math.round(permitPenalty * 10) / 10,
+      workloadAdjustment: workloadAdj,
     },
-    rationale,
+    rationale: `Political risk ${politicalRisk}/100 (EIU+WGI+V-Dem composite); permitting P50 ${p50} mo.`,
+    cite_ids: ["eiu-democracy-index-2024", "world-bank-wgi-2024", "vdem-2024", "dcd-regulatory-tracker"],
   };
-}
-
-function round(x: number, d = 0): number {
-  const p = Math.pow(10, d);
-  return Math.round(x * p) / p;
 }

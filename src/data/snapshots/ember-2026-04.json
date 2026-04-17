@@ -1,0 +1,17 @@
+{
+  "$schema": "Ember snapshot",
+  "source": "ember-electricity-2025",
+  "retrieved": "2026-04-17",
+  "notes": "Fallback used when /api/data/ember proxy is rate-limited or upstream is down. Refresh monthly via `npm run snap:ember`.",
+  "countries": {
+    "MY": { "renewableShare": 0.21, "gridCarbonIntensity_gCO2_per_kWh": 552, "year": 2025 },
+    "ID": { "renewableShare": 0.24, "gridCarbonIntensity_gCO2_per_kWh": 632, "year": 2025 },
+    "TH": { "renewableShare": 0.17, "gridCarbonIntensity_gCO2_per_kWh": 468, "year": 2025 },
+    "SA": { "renewableShare": 0.03, "gridCarbonIntensity_gCO2_per_kWh": 605, "year": 2025 },
+    "AE": { "renewableShare": 0.08, "gridCarbonIntensity_gCO2_per_kWh": 525, "year": 2025 },
+    "ES": { "renewableShare": 0.56, "gridCarbonIntensity_gCO2_per_kWh": 148, "year": 2025 },
+    "GR": { "renewableShare": 0.49, "gridCarbonIntensity_gCO2_per_kWh": 215, "year": 2025 },
+    "TR": { "renewableShare": 0.43, "gridCarbonIntensity_gCO2_per_kWh": 412, "year": 2025 },
+    "US": { "renewableShare": 0.24, "gridCarbonIntensity_gCO2_per_kWh": 388, "year": 2025 }
+  }
+}

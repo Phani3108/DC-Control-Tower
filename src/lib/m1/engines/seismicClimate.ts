@@ -2,43 +2,33 @@ import type { CandidateSite } from "@/lib/shared/types";
 import type { EngineResult, M1Input } from "../types";
 
 /**
- * Seismic + Climate engine.
- *
- * Combines USGS/GEM peak ground acceleration (g) with a climate risk proxy.
- * Low PGA → high score; high PGA (>0.2 g) is a serious concern for long-lived
- * infrastructure.
+ * Seismic + Climate engine — USGS National Seismic Hazard Model + GEM global.
+ * PGA 10% in 50 yr; lower is better. Climate uncertainty baked in as a
+ * flat 8-point penalty pending per-site flood/wildfire modelling.
  */
 export function seismicClimate(site: CandidateSite, _input: M1Input): EngineResult {
-  const s = site.priorSignals ?? {};
-  const pga = (s as Record<string, number>).seismicPGA ?? 0.05;
+  const s = (site.priorSignals ?? {}) as Record<string, number>;
+  const pga = s.seismicPGA ?? 0.05;
+  const floodReturn = s.floodReturnPeriod ?? 100;
 
-  // 0.0 g → 100; 0.3 g → 10
   const seismicScore = Math.max(0, Math.min(100, 100 - (pga / 0.3) * 90));
-
-  // Climate is implicitly captured in cooling engine; here we bake in a
-  // baseline uncertainty score so the final score isn't pure seismic.
-  const climateUncertaintyPenalty = 8;
-  const score = seismicScore - climateUncertaintyPenalty;
-
-  const flag = pga > 0.2 ? " ⚠️ seismic exposure elevated" : "";
+  const climatePenalty = floodReturn < 100 ? 12 : 8;
+  const score = Math.max(0, seismicScore - climatePenalty);
 
   const rationale =
-    `${site.name}: PGA ${pga.toFixed(2)} g (USGS/GEM)${flag}. ` +
-    `15-yr climate uncertainty baked in.`;
+    `PGA ${pga.toFixed(2)} g (USGS/GEM), flood return ${floodReturn} yr. ` +
+    `${pga > 0.2 ? "⚠ elevated seismic exposure" : "seismic exposure tolerable"}.`;
 
   return {
     engineId: "seismicClimate",
-    score: round(Math.max(0, score)),
+    score: Math.round(score * 10) / 10,
     factors: {
       seismicPGA: pga,
-      seismicScore: round(seismicScore),
-      climateUncertaintyPenalty,
+      floodReturnPeriodYears: floodReturn,
+      seismicScore: Math.round(seismicScore),
+      climatePenalty,
     },
     rationale,
+    cite_ids: ["usgs-seismic-hazard", "gem-global-quake-model"],
   };
-}
-
-function round(x: number, d = 0): number {
-  const p = Math.pow(10, d);
-  return Math.round(x * p) / p;
 }

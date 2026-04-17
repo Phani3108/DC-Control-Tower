@@ -1,7 +1,8 @@
 {
   "$schema": "./Competitor[]",
   "lastUpdated": "2026-04-17",
-  "sourceNotes": "Public disclosures; pricing is anchored to industry benchmarks and spot colocation comparisons. Not a guarantee of vendor pricing.",
+  "version": "1.0",
+  "notes": "Pricing bands derived from public investor decks + DatacenterMap listings + CBRE H2 2025 benchmarks. Midbands vary by metro; these are global blended indications.",
   "competitors": [
     {
       "id": "equinix",
@@ -13,7 +14,8 @@
       "sustainabilityClaims": "100% renewable goal by 2030",
       "tier": "III–IV",
       "strengths": ["global footprint", "peering density", "enterprise trust"],
-      "weaknesses": ["price premium", "slower liquid-cooling rollout", "limited 100+ kW/rack"]
+      "weaknesses": ["price premium", "slower liquid-cooling rollout", "limited 100+ kW/rack"],
+      "cite_ids": ["equinix-investor-2025", "datacenter-map", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "digital-realty",
@@ -25,7 +27,8 @@
       "sustainabilityClaims": "2030 net-zero operations",
       "tier": "III–IV",
       "strengths": ["scale", "carrier-neutral", "HD colocation"],
-      "weaknesses": ["pricing rigidity", "APAC footprint gaps"]
+      "weaknesses": ["pricing rigidity", "APAC footprint gaps"],
+      "cite_ids": ["digital-realty-investor-2025", "datacenter-map", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "aws-direct",
@@ -37,7 +40,8 @@
       "sustainabilityClaims": "100% renewable by 2025",
       "tier": "n/a",
       "strengths": ["integrated services", "capacity", "ecosystem"],
-      "weaknesses": ["sovereignty posture", "price opacity", "lock-in"]
+      "weaknesses": ["sovereignty posture", "price opacity", "lock-in"],
+      "cite_ids": ["aws-capacity-public", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "oracle-oci",
@@ -49,7 +53,8 @@
       "sustainabilityClaims": "100% renewable by 2025",
       "tier": "n/a",
       "strengths": ["sovereign cloud", "enterprise DB", "dedicated regions"],
-      "weaknesses": ["smaller ecosystem"]
+      "weaknesses": ["smaller ecosystem"],
+      "cite_ids": ["oci-dedicated-region", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "ntt",
@@ -61,7 +66,8 @@
       "sustainabilityClaims": "2030 net-zero goal",
       "tier": "III–IV",
       "strengths": ["APAC depth", "financial stability", "Japan anchor"],
-      "weaknesses": ["ME footprint gaps"]
+      "weaknesses": ["ME footprint gaps"],
+      "cite_ids": ["ntt-gdc-investor", "datacenter-map", "cbre-dc-trends-h2-2025"]
     }
   ]
 }

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DC Control Tower mark">
+  <title>DC Control Tower</title>
+  <!-- Outer ring hints at the "C" of Control -->
+  <circle cx="32" cy="32" r="28" fill="none" stroke="#E8EEF5" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="135 35" transform="rotate(-30 32 32)"/>
+  <!-- Four rack bars — the "tower" motif embedded in the letter -->
+  <rect x="22" y="18" width="20" height="4" rx="1" fill="#C9A66B"/>
+  <rect x="22" y="26" width="20" height="4" rx="1" fill="#C9A66B"/>
+  <rect x="22" y="34" width="20" height="4" rx="1" fill="#C9A66B"/>
+  <rect x="22" y="42" width="20" height="4" rx="1" fill="#C9A66B"/>
+  <!-- Pulse dot at top — signals "live" -->
+  <circle cx="32" cy="10" r="2.6" fill="#4ADE80">
+    <animate attributeName="opacity" values="1;0.25;1" dur="2.4s" repeatCount="indefinite"/>
+  </circle>
+</svg>

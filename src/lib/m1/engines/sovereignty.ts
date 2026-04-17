@@ -1,16 +1,15 @@
 import type { CandidateSite } from "@/lib/shared/types";
 import type { EngineResult, M1Input } from "../types";
+import type { Jurisdiction, JurisdictionCode } from "@/lib/shared/jurisdictions";
 import { sovereigntyRank } from "@/lib/shared/jurisdictions";
 import regulationsJson from "@/data/regulations.json";
-import type { Jurisdiction, JurisdictionCode } from "@/lib/shared/jurisdictions";
 
 interface RegulationsPayload {
   jurisdictions: Jurisdiction[];
 }
 
-const JURISDICTIONS = (regulationsJson as RegulationsPayload).jurisdictions;
+const JURISDICTIONS = (regulationsJson as unknown as RegulationsPayload).jurisdictions;
 
-// Map country code to primary jurisdiction for this site.
 const COUNTRY_TO_JURISDICTION: Record<string, JurisdictionCode> = {
   AE: "AE",
   SA: "SA",
@@ -20,15 +19,13 @@ const COUNTRY_TO_JURISDICTION: Record<string, JurisdictionCode> = {
   ID: "ID",
   TH: "TH",
   US: "US-VA",
-  MY: "ID", // proxy — Malaysia PDPA closer to ID tier
+  MY: "ID",
 };
 
 /**
- * Sovereignty engine.
- *
- * Draws from the shared Jurisdictions data model (also used by M4). Returns
- * the jurisdiction's `sovereigntyTier` expressed as a 0..100 score plus a
- * list of potentially-blocking rules from `regulations.json`.
+ * Sovereignty — re-uses the shared jurisdictions registry (also used by M4).
+ * Produces a 0..100 score from the jurisdiction's sovereigntyTier plus workload-
+ * specific penalties and a count of blocking rules.
  */
 export function sovereignty(site: CandidateSite, input: M1Input): EngineResult {
   const jCode = COUNTRY_TO_JURISDICTION[site.countryCode];
@@ -38,46 +35,34 @@ export function sovereignty(site: CandidateSite, input: M1Input): EngineResult {
     return {
       engineId: "sovereignty",
       score: 50,
-      factors: { country: site.countryCode, note: "no jurisdiction match — default 50" },
-      rationale: `${site.name}: no jurisdiction profile; using default.`,
+      factors: { country: site.countryCode, note: "no jurisdiction match" },
+      rationale: `${site.name}: no jurisdiction profile registered; default 50.`,
+      cite_ids: ["internal-estimate-2026"],
     };
   }
 
-  // 9 jurisdictions ranked permissive → restrictive. Convert to 0..100.
-  const rank = sovereigntyRank(j.code);          // 0..8 (lower = more permissive)
-  const tierScore = 100 - (rank / 8) * 70;       // 100 → 30 across the ladder
+  const rank = sovereigntyRank(j.code);
+  const tierScore = 100 - (rank / 8) * 70;
 
-  // Workload-specific penalties
   let penalty = 0;
-  if (input.workloadProfile === "sovereign-inference" && j.sovereigntyTier === "restrictive") {
-    penalty += 10; // restrictive regimes can still host inference but with gating
-  }
+  if (input.workloadProfile === "sovereign-inference" && j.sovereigntyTier === "restrictive") penalty += 10;
   if (j.dataLocalization.modelWeights) penalty += 8;
   if (j.dataLocalization.crossBorderTransferRequiresApproval) penalty += 6;
 
   const score = Math.max(0, tierScore - penalty);
 
-  const blockingRules = j.rules.filter((r) => r.severity === "blocking").map((r) => r.citeId);
-
-  const rationale =
-    `${site.name} (${j.country}): tier=${j.sovereigntyTier}; ` +
-    `${j.primaryRegulations.slice(0, 2).join(" + ")}. ` +
-    (blockingRules.length ? `Blocking rules: ${blockingRules.join(", ")}` : "No blocking rules.");
+  const blocking = j.rules.filter((r) => r.severity === "blocking").map((r) => r.citeId);
 
   return {
     engineId: "sovereignty",
-    score: round(score),
+    score: Math.round(score * 10) / 10,
     factors: {
       jurisdiction: j.code,
       tier: j.sovereigntyTier,
-      blockingRuleCount: blockingRules.length,
+      blockingRuleCount: blocking.length,
       requiresCrossBorderApproval: j.dataLocalization.crossBorderTransferRequiresApproval,
     },
-    rationale,
+    rationale: `${j.country}: ${j.sovereigntyTier}; ${j.primaryRegulations.slice(0, 2).join(" + ")}. ${blocking.length ? `Blocking: ${blocking.join(", ")}` : "No blocking rules."}`,
+    cite_ids: j.cite_ids ?? [],
   };
-}
-
-function round(x: number, d = 0): number {
-  const p = Math.pow(10, d);
-  return Math.round(x * p) / p;
 }

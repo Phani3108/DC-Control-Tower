@@ -1,0 +1,18 @@
+{
+  "$schema": "IEA WEO snapshot",
+  "source": "iea-weo-2024",
+  "retrieved": "2026-04-17",
+  "scenario": "APS",
+  "notes": "Industrial electricity price forecast — country-level. USD/MWh. 10-yr CAGR rates derived from WEO 2024 APS trajectory; update annually. NZE variant in iea-weo-2024-nze.json.",
+  "prices": {
+    "MY": { "spot": 78, "cagr10yr": 0.028 },
+    "ID": { "spot": 92, "cagr10yr": 0.032 },
+    "TH": { "spot": 108, "cagr10yr": 0.034 },
+    "SA": { "spot": 72, "cagr10yr": 0.018 },
+    "AE": { "spot": 95, "cagr10yr": 0.019 },
+    "ES": { "spot": 132, "cagr10yr": 0.052 },
+    "GR": { "spot": 142, "cagr10yr": 0.058 },
+    "TR": { "spot": 145, "cagr10yr": 0.068 },
+    "US": { "spot": 85, "cagr10yr": 0.022 }
+  }
+}

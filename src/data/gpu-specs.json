@@ -1,7 +1,8 @@
 {
   "$schema": "./GPUSpec[]",
   "lastUpdated": "2026-04-17",
-  "sourceNotes": "NVIDIA H100/H200/B200/GB200 spec sheets + AMD MI300X datasheet. See docs/DATA_SOURCES.md.",
+  "version": "1.0",
+  "notes": "systemMSRPUSD is channel-list reference for 8-GPU HGX/DGX systems; SemiAnalysis Jun 2025 for B200; NVIDIA reference architecture for H100/H200. Bulk discounts typically 15–20% off list.",
   "gpus": [
     {
       "sku": "H100",
@@ -14,7 +15,8 @@
       "memoryTBs": 0.08,
       "memoryBandwidthTBps": 3.35,
       "cooling": "air",
-      "referenceUrls": ["https://www.nvidia.com/en-us/data-center/h100/"]
+      "systemMSRPUSD": 275000,
+      "cite_ids": ["nvidia-h100", "nvidia-dgx-superpod-rev-arch-v2"]
     },
     {
       "sku": "H200",
@@ -27,7 +29,8 @@
       "memoryTBs": 0.141,
       "memoryBandwidthTBps": 4.8,
       "cooling": "air",
-      "referenceUrls": ["https://www.nvidia.com/en-us/data-center/h200/"]
+      "systemMSRPUSD": 310000,
+      "cite_ids": ["nvidia-h200", "nvidia-dgx-superpod-rev-arch-v2"]
     },
     {
       "sku": "B200",
@@ -40,7 +43,8 @@
       "memoryTBs": 0.192,
       "memoryBandwidthTBps": 8.0,
       "cooling": "liquid-dlc",
-      "referenceUrls": ["https://www.nvidia.com/en-us/data-center/dgx-b200/"]
+      "systemMSRPUSD": 380000,
+      "cite_ids": ["nvidia-b200", "semianalysis-b200-system-2025"]
     },
     {
       "sku": "GB200-NVL72",
@@ -53,7 +57,8 @@
       "memoryTBs": 13.5,
       "memoryBandwidthTBps": 576,
       "cooling": "liquid-dlc",
-      "referenceUrls": ["https://www.nvidia.com/en-us/data-center/gb200-nvl72/"]
+      "systemMSRPUSD": 3200000,
+      "cite_ids": ["nvidia-gb200-nvl72", "semianalysis-b200-system-2025"]
     },
     {
       "sku": "MI300X",
@@ -66,7 +71,8 @@
       "memoryTBs": 0.192,
       "memoryBandwidthTBps": 5.3,
       "cooling": "air",
-      "referenceUrls": ["https://www.amd.com/en/products/accelerators/instinct/mi300/mi300x.html"]
+      "systemMSRPUSD": 240000,
+      "cite_ids": ["amd-mi300x"]
     }
   ]
 }

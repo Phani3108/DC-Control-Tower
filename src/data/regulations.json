@@ -1,7 +1,8 @@
 {
   "$schema": "./Jurisdiction[]",
   "lastUpdated": "2026-04-17",
-  "sourceNotes": "Plain-English summaries hand-curated. Agents are constrained to cite only these cite_ids — no free-form URLs.",
+  "version": "1.0",
+  "notes": "Each rule references the source article or section via cite_ids. Agents are constrained to emit only these cite_ids (injected into role prompts).",
   "jurisdictions": [
     {
       "code": "AE",
@@ -19,16 +20,29 @@
         "transparencyObligations": true,
         "supervisoryBody": "UAE Data Office"
       },
-      "maxFine": { "currency": "AED", "amount": 5000000, "ref": "AE-PDPL-FINE-1" },
+      "maxFine": { "currency": "AED", "amount": 5000000, "ref": "ae-pdpl-2021" },
       "rules": [
-        { "citeId": "AE-PDPL-01", "text": "Cross-border personal data transfer permitted to jurisdictions with adequate protection or via standard contractual clauses.", "sourceUrl": "https://u.ae/en/information-and-services/justice-safety-and-the-law/data-protection-regulations", "severity": "gating" },
-        { "citeId": "AE-PDPL-02", "text": "Health-sector data must be processed within UAE per sector-specific laws.", "sourceUrl": "https://u.ae/en/information-and-services/justice-safety-and-the-law/data-protection-regulations", "severity": "blocking" }
-      ]
+        {
+          "citeId": "AE-PDPL-01",
+          "text": "Cross-border personal data transfer permitted to jurisdictions with adequate protection or via standard contractual clauses. UAE PDPL Art. 22.",
+          "sourceUrl": "https://u.ae/en/information-and-services/justice-safety-and-the-law/data-protection-regulations",
+          "severity": "gating",
+          "cite_ids": ["ae-pdpl-2021"]
+        },
+        {
+          "citeId": "AE-PDPL-02",
+          "text": "Health-sector data must be processed within UAE per Federal Law 2 of 2019 (Health Data).",
+          "sourceUrl": "https://u.ae/en/information-and-services/justice-safety-and-the-law/data-protection-regulations",
+          "severity": "blocking",
+          "cite_ids": ["ae-pdpl-2021"]
+        }
+      ],
+      "cite_ids": ["ae-pdpl-2021"]
     },
     {
       "code": "SA",
       "country": "Saudi Arabia",
-      "primaryRegulations": ["PDPL (Royal Decree M/19 of 2021)", "SDAIA AI Ethics Framework"],
+      "primaryRegulations": ["PDPL (Royal Decree M/19, 2021 amended 2023)", "SDAIA AI Ethics Framework"],
       "sovereigntyTier": "restrictive",
       "dataLocalization": {
         "personalData": true,
@@ -41,17 +55,36 @@
         "transparencyObligations": true,
         "supervisoryBody": "SDAIA"
       },
-      "maxFine": { "currency": "SAR", "amount": 5000000, "ref": "SA-PDPL-FINE-1" },
+      "maxFine": { "currency": "SAR", "amount": 5000000, "ref": "sa-pdpl-2023" },
       "rules": [
-        { "citeId": "SA-PDPL-01", "text": "Personal data of KSA residents must be stored and processed within the Kingdom unless SDAIA approves transfer.", "sourceUrl": "https://sdaia.gov.sa/en/SDAIA/about/Files/PersonalDataEnglish.pdf", "severity": "blocking" },
-        { "citeId": "SA-SDAIA-01", "text": "High-risk AI systems require SDAIA registration and periodic audit.", "sourceUrl": "https://sdaia.gov.sa/en/", "severity": "gating" },
-        { "citeId": "SA-PDPL-02", "text": "Model weights trained on KSA data may be treated as regulated assets.", "sourceUrl": "https://sdaia.gov.sa/en/", "severity": "gating" }
-      ]
+        {
+          "citeId": "SA-PDPL-01",
+          "text": "Personal data of KSA residents must be stored and processed within the Kingdom unless SDAIA approves transfer. PDPL Art. 29.",
+          "sourceUrl": "https://sdaia.gov.sa/en/SDAIA/about/Files/PersonalDataEnglish.pdf",
+          "severity": "blocking",
+          "cite_ids": ["sa-pdpl-2023"]
+        },
+        {
+          "citeId": "SA-SDAIA-01",
+          "text": "High-risk AI systems require SDAIA registration and periodic audit under the AI Ethics Principles.",
+          "sourceUrl": "https://sdaia.gov.sa/en/SDAIA/aboutSdaia/Files/AIEthicsPrinciplesE.pdf",
+          "severity": "gating",
+          "cite_ids": ["sa-sdaia-ai-ethics"]
+        },
+        {
+          "citeId": "SA-PDPL-02",
+          "text": "Model weights trained on KSA data may be treated as regulated personal data derivatives. PDPL Art. 3.",
+          "sourceUrl": "https://sdaia.gov.sa/en/",
+          "severity": "gating",
+          "cite_ids": ["sa-pdpl-2023"]
+        }
+      ],
+      "cite_ids": ["sa-pdpl-2023", "sa-sdaia-ai-ethics"]
     },
     {
       "code": "ES",
       "country": "Spain",
-      "primaryRegulations": ["EU AI Act", "GDPR", "LOPDGDD"],
+      "primaryRegulations": ["EU AI Act (Reg. 2024/1689)", "GDPR (Reg. 2016/679)", "LOPDGDD"],
       "sovereigntyTier": "moderate",
       "dataLocalization": {
         "personalData": false,
@@ -64,16 +97,29 @@
         "transparencyObligations": true,
         "supervisoryBody": "AESIA (Spain)"
       },
-      "maxFine": { "currency": "EUR", "amount": 35000000, "ref": "EU-AIA-FINE-1" },
+      "maxFine": { "currency": "EUR", "amount": 35000000, "ref": "eu-ai-act-2024" },
       "rules": [
-        { "citeId": "EU-AIA-01", "text": "High-risk AI systems must complete a conformity assessment before deployment.", "sourceUrl": "https://artificialintelligenceact.eu/", "severity": "gating" },
-        { "citeId": "EU-GDPR-01", "text": "Cross-border transfers outside EEA require SCCs or adequacy decision.", "sourceUrl": "https://gdpr.eu/", "severity": "gating" }
-      ]
+        {
+          "citeId": "EU-AIA-01",
+          "text": "High-risk AI systems must complete conformity assessment before deployment (AI Act Art. 43).",
+          "sourceUrl": "https://artificialintelligenceact.eu/",
+          "severity": "gating",
+          "cite_ids": ["eu-ai-act-2024"]
+        },
+        {
+          "citeId": "EU-GDPR-01",
+          "text": "Cross-border transfers outside EEA require SCCs or adequacy decision (GDPR Art. 46).",
+          "sourceUrl": "https://gdpr.eu/",
+          "severity": "gating",
+          "cite_ids": ["eu-gdpr"]
+        }
+      ],
+      "cite_ids": ["eu-ai-act-2024", "eu-gdpr"]
     },
     {
       "code": "GR",
       "country": "Greece",
-      "primaryRegulations": ["EU AI Act", "GDPR", "Law 4624/2019"],
+      "primaryRegulations": ["EU AI Act (Reg. 2024/1689)", "GDPR (Reg. 2016/679)", "Law 4624/2019"],
       "sovereigntyTier": "moderate",
       "dataLocalization": {
         "personalData": false,
@@ -86,11 +132,24 @@
         "transparencyObligations": true,
         "supervisoryBody": "Hellenic DPA"
       },
-      "maxFine": { "currency": "EUR", "amount": 35000000, "ref": "EU-AIA-FINE-1" },
+      "maxFine": { "currency": "EUR", "amount": 35000000, "ref": "eu-ai-act-2024" },
       "rules": [
-        { "citeId": "EU-AIA-01", "text": "High-risk AI systems must complete a conformity assessment before deployment.", "sourceUrl": "https://artificialintelligenceact.eu/", "severity": "gating" },
-        { "citeId": "EU-GDPR-01", "text": "Cross-border transfers outside EEA require SCCs or adequacy decision.", "sourceUrl": "https://gdpr.eu/", "severity": "gating" }
-      ]
+        {
+          "citeId": "EU-AIA-01",
+          "text": "High-risk AI systems must complete conformity assessment before deployment (AI Act Art. 43).",
+          "sourceUrl": "https://artificialintelligenceact.eu/",
+          "severity": "gating",
+          "cite_ids": ["eu-ai-act-2024"]
+        },
+        {
+          "citeId": "EU-GDPR-01",
+          "text": "Cross-border transfers outside EEA require SCCs or adequacy decision (GDPR Art. 46).",
+          "sourceUrl": "https://gdpr.eu/",
+          "severity": "gating",
+          "cite_ids": ["eu-gdpr"]
+        }
+      ],
+      "cite_ids": ["eu-ai-act-2024", "eu-gdpr"]
     },
     {
       "code": "TR",
@@ -108,10 +167,17 @@
         "transparencyObligations": true,
         "supervisoryBody": "KVKK Board"
       },
-      "maxFine": { "currency": "TRY", "amount": 5000000, "ref": "TR-KVKK-FINE-1" },
+      "maxFine": { "currency": "TRY", "amount": 5000000, "ref": "tr-kvkk" },
       "rules": [
-        { "citeId": "TR-KVKK-01", "text": "Cross-border transfer of personal data requires KVKK Board authorization absent adequacy.", "sourceUrl": "https://www.kvkk.gov.tr/", "severity": "gating" }
-      ]
+        {
+          "citeId": "TR-KVKK-01",
+          "text": "Cross-border transfer of personal data requires KVKK Board authorization absent adequacy. KVKK Art. 9.",
+          "sourceUrl": "https://www.kvkk.gov.tr/",
+          "severity": "gating",
+          "cite_ids": ["tr-kvkk"]
+        }
+      ],
+      "cite_ids": ["tr-kvkk"]
     },
     {
       "code": "ID",
@@ -128,11 +194,24 @@
         "highRiskDefinition": false,
         "transparencyObligations": true
       },
-      "maxFine": { "currency": "IDR", "amount": 5000000000, "ref": "ID-PDP-FINE-1" },
+      "maxFine": { "currency": "IDR", "amount": 5000000000, "ref": "id-uu-pdp-2022" },
       "rules": [
-        { "citeId": "ID-PDP-01", "text": "Public-sector and financial personal data must be stored in Indonesia.", "sourceUrl": "https://peraturan.bpk.go.id/", "severity": "blocking" },
-        { "citeId": "ID-PDP-02", "text": "Cross-border transfer requires adequate protection or consent.", "sourceUrl": "https://peraturan.bpk.go.id/", "severity": "gating" }
-      ]
+        {
+          "citeId": "ID-PDP-01",
+          "text": "Public-sector and financial personal data must be stored in Indonesia. PP 71/2019 Art. 20.",
+          "sourceUrl": "https://peraturan.bpk.go.id/",
+          "severity": "blocking",
+          "cite_ids": ["id-uu-pdp-2022"]
+        },
+        {
+          "citeId": "ID-PDP-02",
+          "text": "Cross-border transfer requires adequate protection or explicit consent. UU PDP Art. 56.",
+          "sourceUrl": "https://peraturan.bpk.go.id/",
+          "severity": "gating",
+          "cite_ids": ["id-uu-pdp-2022"]
+        }
+      ],
+      "cite_ids": ["id-uu-pdp-2022"]
     },
     {
       "code": "TH",
@@ -149,10 +228,17 @@
         "highRiskDefinition": false,
         "transparencyObligations": true
       },
-      "maxFine": { "currency": "THB", "amount": 5000000, "ref": "TH-PDPA-FINE-1" },
+      "maxFine": { "currency": "THB", "amount": 5000000, "ref": "th-pdpa-2019" },
       "rules": [
-        { "citeId": "TH-PDPA-01", "text": "Cross-border transfer requires adequate protection standard or explicit consent.", "sourceUrl": "https://www.pdpc.or.th/", "severity": "gating" }
-      ]
+        {
+          "citeId": "TH-PDPA-01",
+          "text": "Cross-border transfer requires adequate protection standard or explicit consent. PDPA Sec. 28.",
+          "sourceUrl": "https://www.pdpc.or.th/",
+          "severity": "gating",
+          "cite_ids": ["th-pdpa-2019"]
+        }
+      ],
+      "cite_ids": ["th-pdpa-2019"]
     },
     {
       "code": "US-VA",
@@ -169,10 +255,17 @@
         "highRiskDefinition": false,
         "transparencyObligations": false
       },
-      "maxFine": { "currency": "USD", "amount": 7500, "ref": "US-VA-CDPA-FINE-1" },
+      "maxFine": { "currency": "USD", "amount": 7500, "ref": "us-va-cdpa" },
       "rules": [
-        { "citeId": "US-VA-CDPA-01", "text": "Controllers of Virginia residents' personal data must honor consumer rights; no localization required.", "sourceUrl": "https://law.lis.virginia.gov/vacodefull/title59.1/chapter53/", "severity": "informational" }
-      ]
+        {
+          "citeId": "US-VA-CDPA-01",
+          "text": "Controllers of Virginia residents' personal data must honor consumer rights; no localization required. Va. Code § 59.1-575.",
+          "sourceUrl": "https://law.lis.virginia.gov/vacodefull/title59.1/chapter53/",
+          "severity": "informational",
+          "cite_ids": ["us-va-cdpa"]
+        }
+      ],
+      "cite_ids": ["us-va-cdpa"]
     },
     {
       "code": "US-CA",
@@ -189,10 +282,17 @@
         "highRiskDefinition": false,
         "transparencyObligations": true
       },
-      "maxFine": { "currency": "USD", "amount": 7500, "ref": "US-CA-CCPA-FINE-1" },
+      "maxFine": { "currency": "USD", "amount": 7500, "ref": "us-ca-ccpa" },
       "rules": [
-        { "citeId": "US-CA-CCPA-01", "text": "CCPA applies to CA residents' personal information; no data localization.", "sourceUrl": "https://oag.ca.gov/privacy/ccpa", "severity": "informational" }
-      ]
+        {
+          "citeId": "US-CA-CCPA-01",
+          "text": "CCPA applies to CA residents' personal information; no data localization. Cal. Civ. Code § 1798.100.",
+          "sourceUrl": "https://oag.ca.gov/privacy/ccpa",
+          "severity": "informational",
+          "cite_ids": ["us-ca-ccpa"]
+        }
+      ],
+      "cite_ids": ["us-ca-ccpa"]
     }
   ]
 }

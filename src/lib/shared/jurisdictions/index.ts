@@ -27,6 +27,8 @@ export interface ComplianceRule {
   text: string;                 // ≤ 280 chars plain-English summary
   sourceUrl: string;            // citable source
   severity: "blocking" | "gating" | "informational";
+  /** v1.0 — citation registry ids backing this rule. */
+  cite_ids?: string[];
 }
 
 export interface Jurisdiction {
@@ -48,6 +50,8 @@ export interface Jurisdiction {
   maxFine: { currency: string; amount: number; ref: string };
   rules: ComplianceRule[];
   notes?: string;
+  /** v1.0 citation registry ids backing the jurisdiction record. */
+  cite_ids?: string[];
 }
 
 // Friendliness ranking (derived from research brief):

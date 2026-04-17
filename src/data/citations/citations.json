@@ -1,0 +1,425 @@
+{
+  "$schema": "./Citation[]",
+  "lastUpdated": "2026-04-17",
+  "notes": "Machine-readable source registry. Every numeric field in src/data/ and every engine output references one or more `id`s from this list. Agents are constrained to emit only these ids — enforced by tests/citations.spec.ts.",
+  "citations": [
+    {
+      "id": "damac-press-2025-jun",
+      "title": "DAMAC Group unveils DAMAC Digital as global expansion accelerates",
+      "publisher": "DAMAC Group",
+      "url": "https://www.damacgroup.com/en-ae/d-hub/press-releases/damac-group-unveils-damac-digital-as-global-expansion-accelerates/",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["facility.capacityMW", "facility.operationalMW", "facility.commissioningDate"]
+    },
+    {
+      "id": "damac-press-jakarta-2b",
+      "title": "EDGNEX Data Centers by DAMAC announces $2.3B AI-focused data center in Jakarta",
+      "publisher": "DAMAC Group",
+      "url": "https://www.damacgroup.com/en-cn/d-hub/press-releases/edgnex-data-centers-by-damac-announces-2-3-billion-ai-focused-data-center-in-jakarta-indonesia/",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["facility.capacityMW", "facility.puE", "facility.commissioningDate"]
+    },
+    {
+      "id": "damac-press-us-12b",
+      "title": "Dubai's DAMAC secures capacity worth $12 billion for U.S. AI data centres",
+      "publisher": "itp.net",
+      "url": "https://www.itp.net/cloud-data/dubais-damac-secures-capacity-worth-12-billion-for-u-s-ai-data-centres",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["facility.capacityMW", "facility.status"]
+    },
+    {
+      "id": "damac-leap-ksa-500mw",
+      "title": "EDGNEX at LEAP Saudi Arabia 2025 — 500MW future",
+      "publisher": "DAMAC Group",
+      "url": "https://www.damacgroup.com/en-ae/d-hub/press-releases/edgnex-participates-at-leap-saudi-arabia-2025-announces-500mw-future/",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["facility.capacityMW", "facility.operationalMW"]
+    },
+    {
+      "id": "nvidia-h100",
+      "title": "NVIDIA H100 Tensor Core GPU product page",
+      "publisher": "NVIDIA",
+      "url": "https://www.nvidia.com/en-us/data-center/h100/",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["gpu.tdpW", "gpu.memoryBandwidthTBps", "gpu.rackDensityKW"]
+    },
+    {
+      "id": "nvidia-h200",
+      "title": "NVIDIA H200 Tensor Core GPU product page",
+      "publisher": "NVIDIA",
+      "url": "https://www.nvidia.com/en-us/data-center/h200/",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["gpu.tdpW", "gpu.memoryBandwidthTBps"]
+    },
+    {
+      "id": "nvidia-b200",
+      "title": "NVIDIA DGX B200 product page",
+      "publisher": "NVIDIA",
+      "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["gpu.tdpW", "gpu.systemTdpKW"]
+    },
+    {
+      "id": "nvidia-gb200-nvl72",
+      "title": "NVIDIA GB200 NVL72 rack product page",
+      "publisher": "NVIDIA",
+      "url": "https://www.nvidia.com/en-us/data-center/gb200-nvl72/",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["gpu.tdpW", "gpu.rackDensityKW", "gpu.interconnect"]
+    },
+    {
+      "id": "amd-mi300x",
+      "title": "AMD Instinct MI300X",
+      "publisher": "AMD",
+      "url": "https://www.amd.com/en/products/accelerators/instinct/mi300/mi300x.html",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["gpu.tdpW", "gpu.memoryBandwidthTBps"]
+    },
+    {
+      "id": "semianalysis-b200-system-2025",
+      "title": "SemiAnalysis — HGX B200 channel pricing June 2025",
+      "publisher": "SemiAnalysis",
+      "url": "https://www.semianalysis.com/",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["gpu.systemMSRP", "cost.gpuCapex"]
+    },
+    {
+      "id": "nvidia-dgx-superpod-rev-arch-v2",
+      "title": "NVIDIA DGX SuperPOD Reference Architecture v2 (May 2024)",
+      "publisher": "NVIDIA",
+      "url": "https://docs.nvidia.com/dgx-superpod/",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["cost.gpuCapex", "m3.thermalResponse"]
+    },
+    {
+      "id": "cbre-dc-trends-h2-2025",
+      "title": "CBRE Global Data Center Trends H2 2025",
+      "publisher": "CBRE",
+      "url": "https://www.cbre.com/insights/reports/global-data-center-trends-h2-2025",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["cost.rackUSDPerMonth"]
+    },
+    {
+      "id": "uptime-salary-survey-2024",
+      "title": "Uptime Institute 2024 Data Center Salary Survey",
+      "publisher": "Uptime Institute",
+      "url": "https://uptimeinstitute.com/resources/research-and-reports",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["cost.staffOpex"]
+    },
+    {
+      "id": "uptime-aos-2024",
+      "title": "Uptime Institute Annual Outage Analysis 2024",
+      "publisher": "Uptime Institute",
+      "url": "https://uptimeinstitute.com/resources/research-and-reports/annual-outage-analysis-2024",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["cost.maintenanceOpex", "m3.failureProbability"]
+    },
+    {
+      "id": "uptime-global-survey-2024",
+      "title": "Uptime Institute Global Data Center Survey 2024",
+      "publisher": "Uptime Institute",
+      "url": "https://uptimeinstitute.com/resources/research-and-reports/global-data-center-survey-2024",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["facility.puE", "facility.puEActual", "facility.puERampYear1"]
+    },
+    {
+      "id": "uptime-tier-standard",
+      "title": "Uptime Institute Tier Classification System",
+      "publisher": "Uptime Institute",
+      "url": "https://uptimeinstitute.com/tiers",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["facility.tier", "sla.availability", "sla.redundancy"]
+    },
+    {
+      "id": "iea-weo-2024",
+      "title": "IEA World Energy Outlook 2024",
+      "publisher": "International Energy Agency",
+      "url": "https://www.iea.org/reports/world-energy-outlook-2024",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "scenario": "APS",
+      "fields": ["power.priceUSDPerMWh", "power.priceEscalationPct"]
+    },
+    {
+      "id": "iea-weo-2024-nze",
+      "title": "IEA World Energy Outlook 2024 (NZE scenario)",
+      "publisher": "International Energy Agency",
+      "url": "https://www.iea.org/reports/world-energy-outlook-2024",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "scenario": "NZE",
+      "fields": ["power.priceUSDPerMWh", "power.priceEscalationPct"]
+    },
+    {
+      "id": "ember-electricity-2025",
+      "title": "Ember Global Electricity Data (2025 snapshot)",
+      "publisher": "Ember",
+      "url": "https://ember-energy.org/data/",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["power.renewableShare", "power.gridCarbonIntensity"]
+    },
+    {
+      "id": "eia-open-data",
+      "title": "US EIA Open Data API v2",
+      "publisher": "US Energy Information Administration",
+      "url": "https://www.eia.gov/opendata/",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["power.priceUSDPerMWh"]
+    },
+    {
+      "id": "usgs-seismic-hazard",
+      "title": "USGS National Seismic Hazard Model",
+      "publisher": "USGS",
+      "url": "https://earthquake.usgs.gov/hazards/",
+      "accessed": "2026-04-17",
+      "vintage": 2023,
+      "fields": ["site.seismicPGA"]
+    },
+    {
+      "id": "gem-global-quake-model",
+      "title": "Global Earthquake Model Foundation",
+      "publisher": "GEM Foundation",
+      "url": "https://www.globalquakemodel.org/gem",
+      "accessed": "2026-04-17",
+      "vintage": 2023,
+      "fields": ["site.seismicPGA"]
+    },
+    {
+      "id": "telegeography-global-internet-map-2024",
+      "title": "TeleGeography Global Internet Map 2024",
+      "publisher": "TeleGeography",
+      "url": "https://global-internet-map-2024.telegeography.com/",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["site.latencyToBigIXms", "site.hyperscalerProximityScore"]
+    },
+    {
+      "id": "pch-ix-directory",
+      "title": "Packet Clearing House IX Directory",
+      "publisher": "Packet Clearing House",
+      "url": "https://www.pch.net/ixp/summary",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["site.latencyToBigIXms"]
+    },
+    {
+      "id": "eiu-democracy-index-2024",
+      "title": "EIU Democracy Index 2024",
+      "publisher": "Economist Intelligence Unit",
+      "url": "https://www.eiu.com/n/campaigns/democracy-index-2024/",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["site.politicalRiskScore"]
+    },
+    {
+      "id": "world-bank-wgi-2024",
+      "title": "World Bank Worldwide Governance Indicators 2024",
+      "publisher": "World Bank",
+      "url": "https://www.worldbank.org/en/publication/worldwide-governance-indicators",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["site.politicalRiskScore"]
+    },
+    {
+      "id": "vdem-2024",
+      "title": "V-Dem Institute 2024 Dataset",
+      "publisher": "V-Dem Institute",
+      "url": "https://www.v-dem.net/data/",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["site.politicalRiskScore"]
+    },
+    {
+      "id": "dcd-regulatory-tracker",
+      "title": "DataCenterDynamics Regulatory Tracker",
+      "publisher": "DataCenter Dynamics",
+      "url": "https://www.datacenterdynamics.com/en/",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["site.permittingMonthsP50", "site.permittingMonthsP90"]
+    },
+    {
+      "id": "ae-pdpl-2021",
+      "title": "UAE Federal Decree-Law No. 45 of 2021 on Personal Data Protection",
+      "publisher": "UAE Government",
+      "url": "https://u.ae/en/information-and-services/justice-safety-and-the-law/data-protection-regulations",
+      "accessed": "2026-04-17",
+      "vintage": 2021,
+      "fields": ["regulation.rule"]
+    },
+    {
+      "id": "sa-pdpl-2023",
+      "title": "Saudi Arabia Personal Data Protection Law 2023 amendments",
+      "publisher": "SDAIA",
+      "url": "https://sdaia.gov.sa/en/SDAIA/about/Files/PersonalDataEnglish.pdf",
+      "accessed": "2026-04-17",
+      "vintage": 2023,
+      "fields": ["regulation.rule"]
+    },
+    {
+      "id": "sa-sdaia-ai-ethics",
+      "title": "SDAIA AI Ethics Framework",
+      "publisher": "SDAIA",
+      "url": "https://sdaia.gov.sa/en/SDAIA/aboutSdaia/Files/AIEthicsPrinciplesE.pdf",
+      "accessed": "2026-04-17",
+      "vintage": 2023,
+      "fields": ["regulation.rule"]
+    },
+    {
+      "id": "eu-ai-act-2024",
+      "title": "EU Artificial Intelligence Act (Regulation 2024/1689)",
+      "publisher": "European Union",
+      "url": "https://artificialintelligenceact.eu/",
+      "accessed": "2026-04-17",
+      "vintage": 2024,
+      "fields": ["regulation.rule"]
+    },
+    {
+      "id": "eu-gdpr",
+      "title": "EU General Data Protection Regulation (2016/679)",
+      "publisher": "European Union",
+      "url": "https://gdpr.eu/",
+      "accessed": "2026-04-17",
+      "vintage": 2016,
+      "fields": ["regulation.rule"]
+    },
+    {
+      "id": "tr-kvkk",
+      "title": "Turkey Personal Data Protection Law No. 6698 (KVKK)",
+      "publisher": "KVKK Board",
+      "url": "https://www.kvkk.gov.tr/",
+      "accessed": "2026-04-17",
+      "vintage": 2016,
+      "fields": ["regulation.rule"]
+    },
+    {
+      "id": "id-uu-pdp-2022",
+      "title": "Indonesia Personal Data Protection Law (Law No. 27 of 2022)",
+      "publisher": "Republic of Indonesia",
+      "url": "https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022",
+      "accessed": "2026-04-17",
+      "vintage": 2022,
+      "fields": ["regulation.rule"]
+    },
+    {
+      "id": "th-pdpa-2019",
+      "title": "Thailand Personal Data Protection Act B.E. 2562",
+      "publisher": "Thai PDPC",
+      "url": "https://www.pdpc.or.th/",
+      "accessed": "2026-04-17",
+      "vintage": 2019,
+      "fields": ["regulation.rule"]
+    },
+    {
+      "id": "us-va-cdpa",
+      "title": "Virginia Consumer Data Protection Act",
+      "publisher": "Commonwealth of Virginia",
+      "url": "https://law.lis.virginia.gov/vacodefull/title59.1/chapter53/",
+      "accessed": "2026-04-17",
+      "vintage": 2023,
+      "fields": ["regulation.rule"]
+    },
+    {
+      "id": "us-ca-ccpa",
+      "title": "California Consumer Privacy Act / CPRA",
+      "publisher": "California Attorney General",
+      "url": "https://oag.ca.gov/privacy/ccpa",
+      "accessed": "2026-04-17",
+      "vintage": 2023,
+      "fields": ["regulation.rule"]
+    },
+    {
+      "id": "ferc-n-1-standard",
+      "title": "NERC/FERC N-1 Contingency Standard (TPL-001)",
+      "publisher": "NERC / FERC",
+      "url": "https://www.nerc.com/pa/Stand/Pages/ReliabilityStandards.aspx",
+      "accessed": "2026-04-17",
+      "vintage": 2020,
+      "fields": ["power.firmCapacity", "power.reserveMargin"]
+    },
+    {
+      "id": "datacenter-map",
+      "title": "DatacenterMap.com operator directory",
+      "publisher": "DatacenterMap.com",
+      "url": "https://www.datacentermap.com/",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["competitor.reach", "competitor.operationalMW"]
+    },
+    {
+      "id": "equinix-investor-2025",
+      "title": "Equinix FY2025 investor deck",
+      "publisher": "Equinix",
+      "url": "https://investor.equinix.com/",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["competitor.pricePerMWhUSDBand", "competitor.sustainabilityClaims"]
+    },
+    {
+      "id": "digital-realty-investor-2025",
+      "title": "Digital Realty FY2025 investor deck",
+      "publisher": "Digital Realty",
+      "url": "https://investor.digitalrealty.com/",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["competitor.pricePerMWhUSDBand", "competitor.sustainabilityClaims"]
+    },
+    {
+      "id": "ntt-gdc-investor",
+      "title": "NTT Global Data Centers FY2025 reporting",
+      "publisher": "NTT",
+      "url": "https://services.global.ntt/en-us/services-and-products/data-centers",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["competitor.pricePerMWhUSDBand"]
+    },
+    {
+      "id": "aws-capacity-public",
+      "title": "AWS region infrastructure public disclosures",
+      "publisher": "Amazon Web Services",
+      "url": "https://aws.amazon.com/about-aws/global-infrastructure/",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["competitor.reach"]
+    },
+    {
+      "id": "oci-dedicated-region",
+      "title": "Oracle OCI Dedicated Region disclosures",
+      "publisher": "Oracle",
+      "url": "https://www.oracle.com/cloud/cloud-at-customer/dedicated-region/",
+      "accessed": "2026-04-17",
+      "vintage": 2025,
+      "fields": ["competitor.reach"]
+    },
+    {
+      "id": "internal-estimate-2026",
+      "title": "Internal estimate — DC Control Tower v1.0",
+      "publisher": "DC Control Tower (this project)",
+      "url": "https://github.com/Phani3108/DC-Control-Tower",
+      "accessed": "2026-04-17",
+      "vintage": 2026,
+      "fields": ["any"],
+      "confidence": "low",
+      "notes": "Placeholder for numbers not yet fully sourced. UI tags these as 'est.' in yellow so the audience knows."
+    }
+  ]
+}

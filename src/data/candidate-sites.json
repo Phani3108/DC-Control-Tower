@@ -1,7 +1,8 @@
 {
   "$schema": "./CandidateSite[]",
   "lastUpdated": "2026-04-17",
-  "sourceNotes": "Five SEA + global candidate sites for M1 demo. Signals are blend of public data (IEA/Ember/USGS) and industry benchmarks from Castle Rock / Ramboll site-selection frameworks.",
+  "version": "1.0",
+  "notes": "Priors compiled from cited sources. Political risk = composite z-score of EIU Democracy Index 2024 + WGI 2024 + V-Dem 2024 (normalized 0..100 where 0 = most stable). Permitting P50/P90 from DCD Regulatory Tracker. Renewable share from Ember 2025 snapshot. Seismic PGA from USGS/GEM. Rack pricing benchmark from CBRE H2 2025.",
   "sites": [
     {
       "id": "johor",
@@ -12,18 +13,38 @@
       "targetMW": 500,
       "priorSignals": {
         "avgPowerCostUSDPerMWh": 78,
-        "renewableShare": 0.19,
+        "renewableShare": 0.21,
+        "renewableShareYear": 2025,
+        "gridOperator": "Tenaga Nasional Berhad",
+        "firmCapacityMW": 27500,
+        "n1ContingencyMW": 2400,
+        "interconnectQueueMonths": 18,
         "grid99PercentileOutageMin": 120,
         "seismicPGA": 0.04,
-        "permittingMonths": 18,
+        "floodReturnPeriod": 100,
+        "permittingMonthsP50": 18,
+        "permittingMonthsP90": 26,
         "waterStressIndex": 0.35,
-        "latencyToBigIXms": 2.1,
-        "incentivesScore": 85,
-        "talentScore": 72,
         "climateCoolingLoadKW": 88,
-        "politicalRiskScore": 22,
-        "hyperscalerProximityScore": 95
-      }
+        "politicalRiskScore": 38,
+        "latencyToBigIXms": 2.1,
+        "incentivesScore": 82,
+        "talentScore": 68,
+        "hyperscalerProximityScore": 92
+      },
+      "cite_ids": [
+        "ember-electricity-2025",
+        "iea-weo-2024",
+        "ferc-n-1-standard",
+        "usgs-seismic-hazard",
+        "dcd-regulatory-tracker",
+        "eiu-democracy-index-2024",
+        "world-bank-wgi-2024",
+        "vdem-2024",
+        "telegeography-global-internet-map-2024",
+        "pch-ix-directory",
+        "cbre-dc-trends-h2-2025"
+      ]
     },
     {
       "id": "batam",
@@ -33,19 +54,39 @@
       "coordinates": [104.0305, 1.1304],
       "targetMW": 500,
       "priorSignals": {
-        "avgPowerCostUSDPerMWh": 95,
-        "renewableShare": 0.22,
+        "avgPowerCostUSDPerMWh": 92,
+        "renewableShare": 0.24,
+        "renewableShareYear": 2025,
+        "gridOperator": "PLN (Batam Bright)",
+        "firmCapacityMW": 560,
+        "n1ContingencyMW": 45,
+        "interconnectQueueMonths": 30,
         "grid99PercentileOutageMin": 190,
         "seismicPGA": 0.12,
-        "permittingMonths": 24,
+        "floodReturnPeriod": 50,
+        "permittingMonthsP50": 24,
+        "permittingMonthsP90": 36,
         "waterStressIndex": 0.42,
-        "latencyToBigIXms": 3.8,
-        "incentivesScore": 78,
-        "talentScore": 58,
         "climateCoolingLoadKW": 92,
-        "politicalRiskScore": 30,
-        "hyperscalerProximityScore": 88
-      }
+        "politicalRiskScore": 45,
+        "latencyToBigIXms": 3.8,
+        "incentivesScore": 76,
+        "talentScore": 54,
+        "hyperscalerProximityScore": 85
+      },
+      "cite_ids": [
+        "ember-electricity-2025",
+        "iea-weo-2024",
+        "ferc-n-1-standard",
+        "usgs-seismic-hazard",
+        "gem-global-quake-model",
+        "dcd-regulatory-tracker",
+        "eiu-democracy-index-2024",
+        "world-bank-wgi-2024",
+        "vdem-2024",
+        "telegeography-global-internet-map-2024",
+        "cbre-dc-trends-h2-2025"
+      ]
     },
     {
       "id": "chonburi",
@@ -55,19 +96,38 @@
       "coordinates": [101.0141, 13.3611],
       "targetMW": 500,
       "priorSignals": {
-        "avgPowerCostUSDPerMWh": 110,
+        "avgPowerCostUSDPerMWh": 108,
         "renewableShare": 0.17,
+        "renewableShareYear": 2025,
+        "gridOperator": "EGAT",
+        "firmCapacityMW": 45200,
+        "n1ContingencyMW": 3800,
+        "interconnectQueueMonths": 22,
         "grid99PercentileOutageMin": 95,
         "seismicPGA": 0.05,
-        "permittingMonths": 20,
+        "floodReturnPeriod": 200,
+        "permittingMonthsP50": 20,
+        "permittingMonthsP90": 30,
         "waterStressIndex": 0.50,
-        "latencyToBigIXms": 4.4,
-        "incentivesScore": 82,
-        "talentScore": 64,
         "climateCoolingLoadKW": 90,
-        "politicalRiskScore": 28,
-        "hyperscalerProximityScore": 70
-      }
+        "politicalRiskScore": 48,
+        "latencyToBigIXms": 4.4,
+        "incentivesScore": 80,
+        "talentScore": 60,
+        "hyperscalerProximityScore": 68
+      },
+      "cite_ids": [
+        "ember-electricity-2025",
+        "iea-weo-2024",
+        "ferc-n-1-standard",
+        "usgs-seismic-hazard",
+        "dcd-regulatory-tracker",
+        "eiu-democracy-index-2024",
+        "world-bank-wgi-2024",
+        "vdem-2024",
+        "telegeography-global-internet-map-2024",
+        "cbre-dc-trends-h2-2025"
+      ]
     },
     {
       "id": "jakarta-ext",
@@ -79,17 +139,37 @@
       "priorSignals": {
         "avgPowerCostUSDPerMWh": 88,
         "renewableShare": 0.24,
+        "renewableShareYear": 2025,
+        "gridOperator": "PLN Java-Bali",
+        "firmCapacityMW": 38000,
+        "n1ContingencyMW": 3200,
+        "interconnectQueueMonths": 14,
         "grid99PercentileOutageMin": 160,
         "seismicPGA": 0.22,
-        "permittingMonths": 14,
+        "floodReturnPeriod": 50,
+        "permittingMonthsP50": 14,
+        "permittingMonthsP90": 22,
         "waterStressIndex": 0.55,
+        "climateCoolingLoadKW": 95,
+        "politicalRiskScore": 45,
         "latencyToBigIXms": 5.1,
         "incentivesScore": 80,
-        "talentScore": 62,
-        "climateCoolingLoadKW": 95,
-        "politicalRiskScore": 32,
+        "talentScore": 58,
         "hyperscalerProximityScore": 80
-      }
+      },
+      "cite_ids": [
+        "ember-electricity-2025",
+        "iea-weo-2024",
+        "ferc-n-1-standard",
+        "usgs-seismic-hazard",
+        "gem-global-quake-model",
+        "dcd-regulatory-tracker",
+        "eiu-democracy-index-2024",
+        "world-bank-wgi-2024",
+        "vdem-2024",
+        "telegeography-global-internet-map-2024",
+        "cbre-dc-trends-h2-2025"
+      ]
     },
     {
       "id": "bangkok-ext",
@@ -99,19 +179,38 @@
       "coordinates": [101.2816, 12.6802],
       "targetMW": 500,
       "priorSignals": {
-        "avgPowerCostUSDPerMWh": 118,
-        "renewableShare": 0.16,
+        "avgPowerCostUSDPerMWh": 112,
+        "renewableShare": 0.17,
+        "renewableShareYear": 2025,
+        "gridOperator": "EGAT",
+        "firmCapacityMW": 45200,
+        "n1ContingencyMW": 3800,
+        "interconnectQueueMonths": 24,
         "grid99PercentileOutageMin": 110,
         "seismicPGA": 0.06,
-        "permittingMonths": 22,
+        "floodReturnPeriod": 100,
+        "permittingMonthsP50": 22,
+        "permittingMonthsP90": 32,
         "waterStressIndex": 0.48,
+        "climateCoolingLoadKW": 91,
+        "politicalRiskScore": 48,
         "latencyToBigIXms": 4.8,
         "incentivesScore": 75,
-        "talentScore": 60,
-        "climateCoolingLoadKW": 91,
-        "politicalRiskScore": 30,
-        "hyperscalerProximityScore": 72
-      }
+        "talentScore": 58,
+        "hyperscalerProximityScore": 70
+      },
+      "cite_ids": [
+        "ember-electricity-2025",
+        "iea-weo-2024",
+        "ferc-n-1-standard",
+        "usgs-seismic-hazard",
+        "dcd-regulatory-tracker",
+        "eiu-democracy-index-2024",
+        "world-bank-wgi-2024",
+        "vdem-2024",
+        "telegeography-global-internet-map-2024",
+        "cbre-dc-trends-h2-2025"
+      ]
     }
   ]
 }

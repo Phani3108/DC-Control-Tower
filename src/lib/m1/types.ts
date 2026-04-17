@@ -37,6 +37,8 @@ export interface EngineResult {
   score: number;                  // 0..100
   factors: Record<string, number | string | boolean>;
   rationale: string;              // ≤240 chars, human-readable
+  /** v1.0 — which citation ids back this engine's numbers. */
+  cite_ids: string[];
 }
 
 export interface SiteScorecard {

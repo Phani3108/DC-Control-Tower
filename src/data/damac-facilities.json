@@ -1,7 +1,7 @@
 {
   "$schema": "./DAMACFacility[]",
   "lastUpdated": "2026-04-17",
-  "sourceNotes": "Hand-curated from DAMAC Digital press releases (damacgroup.com), itp.net, datacenterdynamics.com coverage. Update quarterly.",
+  "version": "1.0",
   "facilities": [
     {
       "id": "dammam-1",
@@ -15,11 +15,13 @@
       "operationalMW": 10,
       "tier": "III",
       "puE": 1.38,
+      "puERampYear1": 1.50,
       "status": "operational",
       "commissioningDate": "2024-09",
       "coolingType": "hybrid",
       "maxRackDensityKW": 50,
-      "sourceUrls": ["https://www.damacgroup.com/en-ae/d-hub/press-releases/edgnex-participates-at-leap-saudi-arabia-2025-announces-500mw-future/"]
+      "rackUSDPerMonth": 1650,
+      "cite_ids": ["damac-leap-ksa-500mw", "uptime-global-survey-2024", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "riyadh-1",
@@ -33,11 +35,13 @@
       "operationalMW": 5,
       "tier": "III",
       "puE": 1.35,
+      "puERampYear1": 1.48,
       "status": "under-construction",
       "commissioningDate": "2025-12",
       "coolingType": "liquid-dlc",
       "maxRackDensityKW": 80,
-      "sourceUrls": ["https://www.damacgroup.com/en-ae/d-hub/press-releases/edgnex-participates-at-leap-saudi-arabia-2025-announces-500mw-future/"]
+      "rackUSDPerMonth": 1700,
+      "cite_ids": ["damac-leap-ksa-500mw", "uptime-global-survey-2024", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "uae-dxb-1",
@@ -51,11 +55,13 @@
       "operationalMW": 20,
       "tier": "III",
       "puE": 1.40,
+      "puERampYear1": 1.52,
       "status": "under-construction",
       "commissioningDate": "2025-12",
       "coolingType": "air",
       "maxRackDensityKW": 40,
-      "sourceUrls": ["https://damacdigital.com/our-news/damac-group-unveils-damac-digital-as-global-expansion-accelerates/"]
+      "rackUSDPerMonth": 1750,
+      "cite_ids": ["damac-press-2025-jun", "uptime-global-survey-2024", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "jakarta-1",
@@ -69,11 +75,13 @@
       "operationalMW": 19.2,
       "tier": "III",
       "puE": 1.40,
+      "puERampYear1": 1.47,
       "status": "operational",
       "commissioningDate": "2024-06",
       "coolingType": "air",
       "maxRackDensityKW": 30,
-      "sourceUrls": ["https://www.damacgroup.com/en-cn/d-hub/press-releases/edgnex-data-centers-by-damac-announces-2-3-billion-ai-focused-data-center-in-jakarta-indonesia/"]
+      "rackUSDPerMonth": 1400,
+      "cite_ids": ["damac-press-jakarta-2b", "uptime-global-survey-2024", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "jakarta-2",
@@ -87,11 +95,13 @@
       "operationalMW": 0,
       "tier": "IV",
       "puE": 1.32,
+      "puERampYear1": 1.47,
       "status": "under-construction",
       "commissioningDate": "2026-12",
       "coolingType": "liquid-dlc",
       "maxRackDensityKW": 130,
-      "sourceUrls": ["https://www.damacgroup.com/en-cn/d-hub/press-releases/edgnex-data-centers-by-damac-announces-2-3-billion-ai-focused-data-center-in-jakarta-indonesia/"]
+      "rackUSDPerMonth": 1450,
+      "cite_ids": ["damac-press-jakarta-2b", "uptime-global-survey-2024", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "bangkok-1",
@@ -105,11 +115,13 @@
       "operationalMW": 20,
       "tier": "III",
       "puE": 1.45,
+      "puERampYear1": 1.55,
       "status": "operational",
       "commissioningDate": "2024-06",
       "coolingType": "air",
       "maxRackDensityKW": 30,
-      "sourceUrls": ["https://damacdigital.com/our-news/"]
+      "rackUSDPerMonth": 1500,
+      "cite_ids": ["damac-press-2025-jun", "uptime-global-survey-2024", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "madrid-1",
@@ -123,11 +135,13 @@
       "operationalMW": 0,
       "tier": "IV",
       "puE": 1.30,
+      "puERampYear1": 1.44,
       "status": "under-construction",
       "commissioningDate": "2026-06",
       "coolingType": "liquid-dlc",
       "maxRackDensityKW": 100,
-      "sourceUrls": ["https://damacdigital.com/our-news/"]
+      "rackUSDPerMonth": 2400,
+      "cite_ids": ["damac-press-2025-jun", "uptime-global-survey-2024", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "athens-1",
@@ -141,11 +155,13 @@
       "operationalMW": 0,
       "tier": "III",
       "puE": 1.35,
+      "puERampYear1": 1.49,
       "status": "under-construction",
       "commissioningDate": "2026-09",
       "coolingType": "hybrid",
       "maxRackDensityKW": 60,
-      "sourceUrls": ["https://damacdigital.com/our-news/"]
+      "rackUSDPerMonth": 2200,
+      "cite_ids": ["damac-press-2025-jun", "uptime-global-survey-2024", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "us-va-1",
@@ -159,11 +175,13 @@
       "operationalMW": 0,
       "tier": "IV",
       "puE": 1.28,
+      "puERampYear1": 1.42,
       "status": "planned",
       "commissioningDate": "2027-06",
       "coolingType": "liquid-dlc",
       "maxRackDensityKW": 130,
-      "sourceUrls": ["https://www.itp.net/cloud-data/dubais-damac-secures-capacity-worth-12-billion-for-u-s-ai-data-centres"]
+      "rackUSDPerMonth": 2100,
+      "cite_ids": ["damac-press-us-12b", "uptime-global-survey-2024", "cbre-dc-trends-h2-2025"]
     },
     {
       "id": "us-tx-1",
@@ -177,11 +195,13 @@
       "operationalMW": 0,
       "tier": "IV",
       "puE": 1.32,
+      "puERampYear1": 1.46,
       "status": "announced",
       "commissioningDate": "2027-12",
       "coolingType": "liquid-dlc",
       "maxRackDensityKW": 130,
-      "sourceUrls": ["https://www.itp.net/cloud-data/dubais-damac-secures-capacity-worth-12-billion-for-u-s-ai-data-centres"]
+      "rackUSDPerMonth": 1850,
+      "cite_ids": ["damac-press-us-12b", "uptime-global-survey-2024", "cbre-dc-trends-h2-2025"]
     }
   ]
 }
