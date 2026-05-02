@@ -5,6 +5,7 @@ import type { EngineResult, M1Input } from "../types";
  * Incentives + Permitting — DCD Regulatory Tracker P50/P90.
  */
 export function incentives(site: CandidateSite, _input: M1Input): EngineResult {
+  void _input;
   const s = (site.priorSignals ?? {}) as Record<string, number>;
   const incScore = s.incentivesScore ?? 60;
   const p50 = s.permittingMonthsP50 ?? 24;

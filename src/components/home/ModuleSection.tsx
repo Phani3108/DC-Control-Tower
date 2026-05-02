@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 
 export interface ModuleSectionProps {
   id: string;
-  index: number;           // 1..4 for sequencing
+  index: number;           // 1..7 for sequencing
   eyebrow: string;
   title: string;
   description: string;
@@ -63,7 +63,7 @@ export function ModuleSection({
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: Math.min(index * 0.03, 0.18) }}
             style={{ order: reverse ? 2 : 1 }}
           >
             <Chip
@@ -136,7 +136,7 @@ export function ModuleSection({
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, delay: Math.min(index * 0.03, 0.18), ease: [0.16, 1, 0.3, 1] }}
             style={{ order: reverse ? 1 : 2 }}
           >
             {illustration}

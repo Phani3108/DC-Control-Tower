@@ -118,7 +118,7 @@ export function Hero() {
                 maxWidth: 520,
               }}
             >
-              One product. Four modules. Every number cited. Strategy, GTM, operations, and sovereignty for the next 4,000 MW of AI-ready capacity.
+              One product. Eight modules. Every number cited. Strategy, GTM, power balancing, cooling control, construction execution, operations, sovereignty, and tenant monetization for the next 4,000 MW of AI-ready capacity.
             </Typography>
 
             <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
@@ -143,8 +143,8 @@ export function Hero() {
                 See live demo
               </Button>
               <Button
-                component="a"
-                href="#architecture"
+                component={Link}
+                href="/platform"
                 variant="outlined"
                 color="inherit"
                 size="large"
@@ -157,7 +157,7 @@ export function Hero() {
                   "&:hover": { borderColor: "primary.light" },
                 }}
               >
-                Architecture
+                Platform layer
               </Button>
             </Stack>
 

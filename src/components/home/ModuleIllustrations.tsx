@@ -2,7 +2,6 @@
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 
 /**
@@ -210,6 +209,144 @@ export function M4Illustration() {
               </text>
             </g>
           ))}
+        </g>
+      </svg>
+    </Frame>
+  );
+}
+
+export function M5Illustration() {
+  return (
+    <Frame title="/m5-build-tower?preset=m5-jakarta-19mw-phase1" accent="#F4B740">
+      <svg viewBox="0 0 400 240" width="100%" height="100%">
+        <g transform="translate(20,24)">
+          <text x="0" y="0" fontSize="9" fill="#9AA7B5" fontFamily="monospace">
+            CRITICAL PATH · P50 vs P90 ENERGIZATION
+          </text>
+          <line x1="0" y1="18" x2="360" y2="18" stroke="rgba(255,255,255,0.08)" />
+          <line x1="0" y1="76" x2="360" y2="76" stroke="rgba(255,255,255,0.08)" />
+          <line x1="0" y1="134" x2="360" y2="134" stroke="rgba(255,255,255,0.08)" />
+          <line x1="0" y1="192" x2="360" y2="192" stroke="rgba(255,255,255,0.08)" />
+
+          <rect x="0" y="28" width="110" height="14" rx="2" fill="#4F7CAC" />
+          <rect x="118" y="28" width="140" height="14" rx="2" fill="#C9A66B" />
+          <rect x="0" y="86" width="150" height="14" rx="2" fill="#EF6A6A" />
+          <rect x="160" y="86" width="120" height="14" rx="2" fill="#4ADE80" />
+          <rect x="0" y="144" width="210" height="14" rx="2" fill="#F4B740" />
+
+          <line x1="270" y1="16" x2="270" y2="210" stroke="#E8EEF5" strokeDasharray="3 3" />
+          <line x1="328" y1="16" x2="328" y2="210" stroke="#F4B740" strokeDasharray="3 3" />
+          <text x="270" y="226" fontSize="9" fill="#E8EEF5" fontFamily="monospace" textAnchor="middle">
+            P50
+          </text>
+          <text x="328" y="226" fontSize="9" fill="#F4B740" fontFamily="monospace" textAnchor="middle">
+            P90
+          </text>
+        </g>
+      </svg>
+    </Frame>
+  );
+}
+
+export function M6Illustration() {
+  return (
+    <Frame title="/m6-cooling-copilot?preset=m6-riyadh-64mw-cooling" accent="#5CC7B2">
+      <svg viewBox="0 0 400 240" width="100%" height="100%">
+        <g transform="translate(20,22)">
+          <text x="0" y="0" fontSize="9" fill="#9AA7B5" fontFamily="monospace">
+            COOLING CONTROL · SETPOINT OPTIMIZATION
+          </text>
+
+          {[0, 1, 2].map((idx) => (
+            <g key={idx} transform={`translate(0,${22 + idx * 58})`}>
+              <rect x="0" y="0" width="360" height="36" rx="4" fill="rgba(255,255,255,0.03)" />
+              <text x="10" y="14" fontSize="9" fill="#E8EEF5" fontFamily="monospace">{`Zone ${idx + 1}`}</text>
+              <rect x="10" y="20" width={`${140 + idx * 45}`} height="7" rx="3" fill="#5CC7B2" />
+              <rect x="168" y="20" width={`${110 + idx * 26}`} height="7" rx="3" fill="#4F7CAC" opacity="0.9" />
+              <text x="318" y="14" fontSize="8" fill="#9AA7B5" fontFamily="monospace" textAnchor="end">
+                {`PUE ${1.34 - idx * 0.03}`}
+              </text>
+            </g>
+          ))}
+
+          <line x1="292" y1="12" x2="292" y2="214" stroke="#5CC7B2" strokeDasharray="3 3" />
+          <text x="292" y="228" fontSize="9" fill="#5CC7B2" fontFamily="monospace" textAnchor="middle">
+            target PUE
+          </text>
+        </g>
+      </svg>
+    </Frame>
+  );
+}
+
+export function M7Illustration() {
+  return (
+    <Frame title="/m7-power-balancer?preset=m7-dubai-72mw-power" accent="#60A5FA">
+      <svg viewBox="0 0 400 240" width="100%" height="100%">
+        <g transform="translate(20,20)">
+          <text x="0" y="0" fontSize="9" fill="#9AA7B5" fontFamily="monospace">
+            POWER DISPATCH · GRID + RESERVE ORCHESTRATION
+          </text>
+
+          {[0, 1, 2].map((idx) => (
+            <g key={idx} transform={`translate(0,${24 + idx * 56})`}>
+              <rect x="0" y="0" width="360" height="34" rx="4" fill="rgba(255,255,255,0.03)" />
+              <text x="10" y="13" fontSize="9" fill="#E8EEF5" fontFamily="monospace">{`Window ${idx + 1}`}</text>
+              <rect x="10" y="18" width={`${120 + idx * 34}`} height="6" rx="3" fill="#60A5FA" />
+              <rect x="138" y="18" width={`${90 + idx * 22}`} height="6" rx="3" fill="#4ADE80" opacity="0.9" />
+              <rect x="238" y="18" width={`${40 + idx * 18}`} height="6" rx="3" fill="#F4B740" opacity="0.9" />
+              <text x="344" y="13" fontSize="8" fill="#9AA7B5" fontFamily="monospace" textAnchor="end">
+                {`$${108 + idx * 7}/MWh`}
+              </text>
+            </g>
+          ))}
+
+          <line x1="300" y1="10" x2="300" y2="214" stroke="#60A5FA" strokeDasharray="3 3" />
+          <text x="300" y="228" fontSize="9" fill="#60A5FA" fontFamily="monospace" textAnchor="middle">
+            reserve floor
+          </text>
+        </g>
+      </svg>
+    </Frame>
+  );
+}
+
+export function M8Illustration() {
+  return (
+    <Frame title="/m8-tenant-optimizer?preset=m8-abu-dhabi-35mw-tenants" accent="#E8792F">
+      <svg viewBox="0 0 400 240" width="100%" height="100%">
+        <g transform="translate(20,20)">
+          <text x="0" y="0" fontSize="9" fill="#9AA7B5" fontFamily="monospace">
+            TENANT MIX · REVENUE AND MARGIN ENVELOPE
+          </text>
+
+          {[
+            { label: "Frontier training", fit: 91, rev: 128, color: "#E8792F" },
+            { label: "Sovereign inference", fit: 87, rev: 112, color: "#C9A66B" },
+            { label: "Enterprise finetune", fit: 79, rev: 88, color: "#60A5FA" },
+            { label: "Managed burst", fit: 73, rev: 71, color: "#4ADE80" },
+          ].map((r, idx) => (
+            <g key={r.label} transform={`translate(0,${22 + idx * 46})`}>
+              <text x="0" y="11" fontSize="9" fill="#E8EEF5" fontFamily="monospace">
+                {r.label}
+              </text>
+              <rect x="0" y="17" width="210" height="6" rx="3" fill="rgba(255,255,255,0.05)" />
+              <rect x="0" y="17" width={r.fit * 2.1} height="6" rx="3" fill={r.color} />
+              <text x="220" y="22" fontSize="8" fill="#9AA7B5" fontFamily="monospace">
+                fit {r.fit}
+              </text>
+
+              <rect x="280" y="8" width={r.rev * 0.7} height="14" rx="2" fill={`${r.color}AA`} />
+              <text x="360" y="19" fontSize="8" fill="#E8EEF5" fontFamily="monospace" textAnchor="end">
+                ${r.rev}M
+              </text>
+            </g>
+          ))}
+
+          <line x1="248" y1="12" x2="248" y2="214" stroke="#E8792F" strokeDasharray="3 3" opacity="0.8" />
+          <text x="248" y="228" fontSize="9" fill="#E8792F" fontFamily="monospace" textAnchor="middle">
+            margin floor
+          </text>
         </g>
       </svg>
     </Frame>

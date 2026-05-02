@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Box from "@mui/material/Box";
@@ -54,14 +54,12 @@ export function M1SimulatorShell() {
   // Deterministic TS-side computation — re-runs on any input change
   const output: M1Output = useMemo(() => runAllEngines(input), [input]);
 
-  // Auto-select top-ranked site on first load / when ranking changes
-  useEffect(() => {
-    if (!selectedSiteId || !output.scorecards.find((c) => c.site.id === selectedSiteId)) {
-      setSelectedSiteId(output.topSite || null);
-    }
-  }, [output.topSite, output.scorecards, selectedSiteId]);
+  const activeSelectedSiteId =
+    selectedSiteId && output.scorecards.find((c) => c.site.id === selectedSiteId)
+      ? selectedSiteId
+      : output.topSite || null;
 
-  const selectedCard = output.scorecards.find((c) => c.site.id === selectedSiteId) ?? null;
+  const selectedCard = output.scorecards.find((c) => c.site.id === activeSelectedSiteId) ?? null;
   const preset = presetId ? getPreset(presetId) : undefined;
 
   return (
@@ -100,7 +98,7 @@ export function M1SimulatorShell() {
               <InputPanel value={input} onChange={setInput} sites={ALL_SITES} />
               <SiteRanking
                 output={output}
-                selectedSiteId={selectedSiteId}
+                selectedSiteId={activeSelectedSiteId}
                 onSelect={setSelectedSiteId}
               />
             </Stack>

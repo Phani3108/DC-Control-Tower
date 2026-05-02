@@ -35,7 +35,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="DC Control Tower — Agent Runtime",
-    description="Multi-agent Claude orchestration for site selection, capacity matching, ops RCA, and compliance.",
+    description="Multi-agent Claude orchestration for site selection, capacity matching, cooling optimization, build orchestration, ops RCA, and compliance.",
     version="0.1.0",
     lifespan=lifespan,
 )

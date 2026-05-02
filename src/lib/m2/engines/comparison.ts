@@ -16,17 +16,18 @@ const COMPETITORS = (competitorsJson as unknown as { competitors: Competitor[] }
  * and return a per-competitor delta + a short qualitative note.
  */
 export function buildCompetitorComparisons(damacUSDPerMWh: number, workload: M2Workload): CompetitorComparison[] {
+  const workloadTag = `${workload.shape}/${workload.gpu}`;
   return COMPETITORS.map((c) => {
     const midBand = (c.pricePerMWhUSDBand[0] + c.pricePerMWhUSDBand[1]) / 2;
     const deltaPct = Math.round(((midBand - damacUSDPerMWh) / midBand) * 100);
 
     let notes: string;
     if (deltaPct > 0) {
-      notes = `DAMAC ~${deltaPct}% cheaper vs. ${c.name} midband. Key ${c.name} tradeoffs: ${c.weaknesses.slice(0, 2).join(", ")}.`;
+      notes = `DAMAC ~${deltaPct}% cheaper vs. ${c.name} midband for ${workloadTag}. Key ${c.name} tradeoffs: ${c.weaknesses.slice(0, 2).join(", ")}.`;
     } else if (deltaPct < 0) {
-      notes = `DAMAC ~${Math.abs(deltaPct)}% more expensive than ${c.name} midband; however DAMAC wins on ${(c.weaknesses[0] ?? "AI-readiness").toLowerCase()}.`;
+      notes = `DAMAC ~${Math.abs(deltaPct)}% more expensive than ${c.name} midband for ${workloadTag}; however DAMAC wins on ${(c.weaknesses[0] ?? "AI-readiness").toLowerCase()}.`;
     } else {
-      notes = `Price parity with ${c.name}; differentiation through ${c.weaknesses.slice(0, 1).join(", ") || "AI-readiness"}.`;
+      notes = `Price parity with ${c.name} for ${workloadTag}; differentiation through ${c.weaknesses.slice(0, 1).join(", ") || "AI-readiness"}.`;
     }
 
     return {

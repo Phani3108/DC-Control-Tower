@@ -7,6 +7,7 @@ import type { EngineResult, M1Input } from "../types";
  * flat 8-point penalty pending per-site flood/wildfire modelling.
  */
 export function seismicClimate(site: CandidateSite, _input: M1Input): EngineResult {
+  void _input;
   const s = (site.priorSignals ?? {}) as Record<string, number>;
   const pga = s.seismicPGA ?? 0.05;
   const floodReturn = s.floodReturnPeriod ?? 100;

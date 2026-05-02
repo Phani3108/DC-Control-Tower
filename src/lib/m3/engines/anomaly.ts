@@ -1,4 +1,4 @@
-import type { Anomaly, TelemetryPoint, TelemetrySeries } from "../types";
+import type { Anomaly, TelemetrySeries } from "../types";
 
 /**
  * Rolling z-score anomaly detection.

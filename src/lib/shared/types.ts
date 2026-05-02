@@ -166,7 +166,7 @@ export interface DebateResult<TDecision = unknown> {
 
 export interface DemoPreset<TInput = unknown> {
   id: string;
-  module: "m1" | "m2" | "m3" | "m4";
+  module: "m1" | "m2" | "m3" | "m4" | "m5" | "m6" | "m7" | "m8";
   title: string;
   description: string;
   input: TInput;

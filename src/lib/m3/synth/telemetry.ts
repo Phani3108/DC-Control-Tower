@@ -45,7 +45,6 @@ export interface SynthOptions {
 export function generateTelemetry(opts: SynthOptions): TelemetrySeries {
   const rand = mulberry32(seedFromString(opts.incidentId));
   const anchor = new Date(opts.startTime).getTime();
-  const totalMinutes = opts.minutesBefore + opts.minutesAfter;
   const points: TelemetryPoint[] = [];
   const annotations: TelemetrySeries["annotations"] = [];
 

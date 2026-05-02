@@ -47,8 +47,7 @@ export function M2SimulatorShell() {
   const [synthesis, setSynthesis] = useState<ProposalSynthesis | null>(null);
   const [tab, setTab] = useState(0);
 
-  const input: M2Input = { workload, rfpText };
-  const output = useMemo(() => runM2(input), [input]);
+  const output = useMemo(() => runM2({ workload, rfpText }), [workload, rfpText]);
 
   const primary = output.fits.find((f) => f.facilityId === output.primaryFacilityId);
   const primaryCost = primary ? output.costs[primary.facilityId] : null;

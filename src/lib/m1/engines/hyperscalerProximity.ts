@@ -7,6 +7,7 @@ import type { EngineResult, M1Input } from "../types";
  * and the IX density ranking.
  */
 export function hyperscalerProximity(site: CandidateSite, _input: M1Input): EngineResult {
+  void _input;
   const hpScore = ((site.priorSignals ?? {}) as Record<string, number>).hyperscalerProximityScore ?? 60;
   return {
     engineId: "hyperscalerProximity",

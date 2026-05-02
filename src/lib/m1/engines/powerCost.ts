@@ -16,6 +16,7 @@ interface IEASnapshot { prices: Record<string, IEAPrice> }
 const PRICES = (ieaSnapshot as unknown as IEASnapshot).prices;
 
 export function powerCost(site: CandidateSite, _input: M1Input): EngineResult {
+  void _input;
   const record = PRICES[site.countryCode] ?? { spot: 130, cagr10yr: 0.035 };
   const spot = record.spot;
   const cagr = record.cagr10yr;

@@ -33,6 +33,23 @@ Set these in **Vercel Project Settings → Environment Variables**. Scope them t
 | `MOCK_AGENTS` | `true` or `false` | `true` short-circuits the agent proxy to canned SSE streams — useful for standalone Vercel deploys. |
 | `EMBER_API_KEY` | *(optional)* | If unset, `/api/data/ember` serves the committed monthly snapshot. |
 | `EIA_API_KEY` | *(optional)* | If unset, `/api/data/eia` serves the US snapshot. |
+| `M7_UTILITY_TELEMETRY_URL` | `https://<utility-provider>/...` | Optional live utility telemetry feed used by `GET /api/connectors/m7/power-signals`. |
+| `M7_MARKET_PRICE_URL` | `https://<market-provider>/...` | Optional live market price feed used by `GET /api/connectors/m7/power-signals`. |
+| `M7_CONNECTOR_TIMEOUT_MS` | `2500` | Optional global timeout for connector HTTP calls (ms). |
+| `M7_UTILITY_TELEMETRY_BEARER_TOKEN` | *(optional)* | Utility provider bearer token. |
+| `M7_UTILITY_TELEMETRY_API_KEY` | *(optional)* | Utility provider API key. |
+| `M7_UTILITY_TELEMETRY_API_KEY_HEADER` | `x-api-key` | Header name used with utility API key. |
+| `M7_UTILITY_TELEMETRY_BASIC_USERNAME` | *(optional)* | Utility provider basic auth username. |
+| `M7_UTILITY_TELEMETRY_BASIC_PASSWORD` | *(optional)* | Utility provider basic auth password. |
+| `M7_UTILITY_TELEMETRY_AUTH_HEADER_NAME` | *(optional)* | Utility custom auth header name. |
+| `M7_UTILITY_TELEMETRY_AUTH_HEADER_VALUE` | *(optional)* | Utility custom auth header value. |
+| `M7_MARKET_PRICE_BEARER_TOKEN` | *(optional)* | Market provider bearer token. |
+| `M7_MARKET_PRICE_API_KEY` | *(optional)* | Market provider API key. |
+| `M7_MARKET_PRICE_API_KEY_HEADER` | `x-api-key` | Header name used with market API key. |
+| `M7_MARKET_PRICE_BASIC_USERNAME` | *(optional)* | Market provider basic auth username. |
+| `M7_MARKET_PRICE_BASIC_PASSWORD` | *(optional)* | Market provider basic auth password. |
+| `M7_MARKET_PRICE_AUTH_HEADER_NAME` | *(optional)* | Market custom auth header name. |
+| `M7_MARKET_PRICE_AUTH_HEADER_VALUE` | *(optional)* | Market custom auth header value. |
 | `ANTHROPIC_OPUS_MODEL` | `claude-opus-4-6` | Override to pin a specific model version. |
 | `ANTHROPIC_SONNET_MODEL` | `claude-sonnet-4-6` | Override to pin a specific model version. |
 

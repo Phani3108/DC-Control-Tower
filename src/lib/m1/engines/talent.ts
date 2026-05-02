@@ -3,6 +3,7 @@ import type { EngineResult, M1Input } from "../types";
 
 /** Talent index composite (STEM workforce + unemployment + visa policy proxy). */
 export function talent(site: CandidateSite, _input: M1Input): EngineResult {
+  void _input;
   const t = ((site.priorSignals ?? {}) as Record<string, number>).talentScore ?? 55;
   return {
     engineId: "talent",

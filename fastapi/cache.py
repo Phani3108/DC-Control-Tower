@@ -35,9 +35,15 @@ def cache_key(preset_id: str, payload: Any) -> str:
 
 
 def read(preset_id: str, payload: Any) -> dict | None:
-    path = _cache_dir() / f"{preset_id}-{cache_key(preset_id, payload)}.json"
+    d = _cache_dir()
+    path = d / f"{preset_id}-{cache_key(preset_id, payload)}.json"
     if not path.exists():
-        return None
+        # Demo fallback: allow a pre-seeded fixture for this preset even when
+        # payload shape changes slightly between UI revisions.
+        candidates = sorted(d.glob(f"{preset_id}-*.json"))
+        if not candidates:
+            return None
+        path = candidates[-1]
     try:
         return json.loads(path.read_text())
     except json.JSONDecodeError:

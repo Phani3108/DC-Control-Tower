@@ -159,13 +159,11 @@ async def debate(
         try:
             # Opening round
             for a in agents:
-                async for _ in _noop(_run("opening", a)):
-                    pass
+                await _run("opening", a)
             # Optional rebuttal rounds
             for _ in range(max(0, rounds - 1)):
                 for a in agents:
-                    async for _ in _noop(_run("rebuttal", a)):
-                        pass
+                    await _run("rebuttal", a)
             # Synthesis
             yield_queue.put_nowait({"type": "phase", "phase": "synthesis", "agent": synthesizer.role})
             synth_prompt = {
@@ -216,11 +214,6 @@ async def debate(
         if frame.get("type") == "__end__":
             return
         yield frame
-
-
-async def _noop(agen):
-    async for _ in agen:
-        pass
 
 
 # ---------------------------------------------------------------------------

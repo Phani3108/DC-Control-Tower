@@ -22,6 +22,16 @@ const STEPS: Step[] = [
   { index: 2, time: "2:00", label: "M2 · 40 MW B200 RFP → proposal", href: "/m2-capacity-matcher?preset=m2-anthropic-b200-40mw", color: "#4F7CAC" },
   { index: 3, time: "5:30", label: "M3 · Zone B latency incident RCA", href: "/m3-ops-tower?preset=m3-zoneb-latency-0417", color: "#EF6A6A" },
   { index: 4, time: "7:30", label: "M4 · KSA fintech + EU data routing", href: "/m4-sovereignty?preset=m4-ksa-fintech-eu-data", color: "#4ADE80" },
+  { index: 5, time: "9:00", label: "M5 · Jakarta 19.2 MW build orchestration", href: "/m5-build-tower?preset=m5-jakarta-19mw-phase1", color: "#F4B740" },
+  { index: 6, time: "10:30", label: "M6 · Riyadh 64 MW cooling optimization", href: "/m6-cooling-copilot?preset=m6-riyadh-64mw-cooling", color: "#5CC7B2" },
+  { index: 7, time: "12:00", label: "M7 · Dubai 72 MW power balancing", href: "/m7-power-balancer?preset=m7-dubai-72mw-power", color: "#60A5FA" },
+  {
+    index: 8,
+    time: "13:30",
+    label: "M8 · Abu Dhabi 35 MW tenant-fit optimization",
+    href: "/m8-tenant-optimizer?preset=m8-abu-dhabi-35mw-tenants",
+    color: "#E8792F",
+  },
 ];
 
 export function DemoStepper() {
@@ -36,7 +46,7 @@ export function DemoStepper() {
           variant="h3"
           sx={{ fontSize: { xs: "1.75rem", md: "2.25rem" }, fontWeight: 700, mb: 1.5, letterSpacing: "-0.02em" }}
         >
-          Four presets. Zero live typing.
+          Eight presets. Zero live typing.
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ mb: 5, maxWidth: 620 }}>
           Every scenario is URL-routable and disk-cached for replayable demos. Open a preset, watch the engines compute, export the brief.

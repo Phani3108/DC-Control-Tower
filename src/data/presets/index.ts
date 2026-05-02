@@ -42,6 +42,62 @@ export interface M4Input {
   candidateFacilityIds: string[];
 }
 
+export interface M5Input {
+  projectId: string;
+  projectName: string;
+  geography: string;
+  targetMW: number;
+  plannedNoticeToProceed: string;
+  permitComplexity: 1 | 2 | 3 | 4 | 5;
+  utilityQueueMonths: number;
+  longLeadTightness: 1 | 2 | 3 | 4 | 5;
+  epcReadiness: 1 | 2 | 3 | 4 | 5;
+  contingencyPct: number;
+}
+
+export interface M6Input {
+  facilityId: string;
+  facilityName: string;
+  geography: string;
+  targetITMW: number;
+  ambientTempC: number;
+  humidityPct: number;
+  coolingMode: "air" | "hybrid-dlc" | "full-dlc";
+  redundancyTier: "N+1" | "2N";
+  rackDensityKW: number;
+  pueTarget: number;
+}
+
+export interface M7Input {
+  facilityId: string;
+  facilityName: string;
+  geography: string;
+  targetITMW: number;
+  pue: number;
+  utilityFeedMW: number;
+  onsiteGenerationMW: number;
+  batteryMWh: number;
+  spotPriceUSDPerMWh: number;
+  demandResponsePct: number;
+  contractMode: "firm-ppa" | "hybrid-ppa-spot" | "merchant";
+  reservePolicy: "N-1" | "N-2";
+}
+
+export interface M8Input {
+  facilityId: string;
+  facilityName: string;
+  geography: string;
+  availableMW: number;
+  committedMW: number;
+  targetGpu: "H100" | "H200" | "B200" | "GB200-NVL72" | "MI300X";
+  pue: number;
+  pricingMode: "capacity-reservation" | "usage-indexed" | "hybrid";
+  contractTermYears: number;
+  renewablePremiumPct: number;
+  financingCostPct: number;
+  targetGrossMarginPct: number;
+}
+
 // ---------------------------------------------------------------------------
 
 export const PRESETS: Record<string, DemoPreset> = {
@@ -129,12 +185,120 @@ export const PRESETS: Record<string, DemoPreset> = {
       "Recommendation: primary Madrid, Riyadh only for non-PII aggregated telemetry",
     ],
   },
+
+  "m5-jakarta-19mw-phase1": {
+    id: "m5-jakarta-19mw-phase1",
+    module: "m5",
+    title: "Jakarta 19.2 MW Phase 1 — commissioning risk",
+    description:
+      "Construction orchestration view: quantify schedule slip risk from permitting, utility queue, long-lead equipment, and EPC readiness before energization.",
+    input: {
+      projectId: "PRJ-JKT-19MW-P1",
+      projectName: "Jakarta AI Campus · Phase 1",
+      geography: "Indonesia",
+      targetMW: 19.2,
+      plannedNoticeToProceed: "2026-06-15",
+      permitComplexity: 3,
+      utilityQueueMonths: 8,
+      longLeadTightness: 4,
+      epcReadiness: 3,
+      contingencyPct: 12,
+    } satisfies M5Input,
+    expectedHighlights: [
+      "P50 vs P90 energization date spread surfaced immediately",
+      "Utility queue and long-lead packages dominate capex-at-risk",
+      "Critical path milestones are visible with owner-level accountability",
+      "Project memo recommends concrete interventions for the top delivery risks",
+    ],
+  },
+
+  "m6-riyadh-64mw-cooling": {
+    id: "m6-riyadh-64mw-cooling",
+    module: "m6",
+    title: "Riyadh 64 MW AI Pod — cooling optimization",
+    description:
+      "Cooling-control scenario for a high-density AI pod. Optimize setpoints and thermal risk to protect reliability while improving PUE.",
+    input: {
+      facilityId: "riyadh-1",
+      facilityName: "Riyadh AI Campus · Pod C",
+      geography: "Saudi Arabia",
+      targetITMW: 64,
+      ambientTempC: 38,
+      humidityPct: 42,
+      coolingMode: "hybrid-dlc",
+      redundancyTier: "2N",
+      rackDensityKW: 96,
+      pueTarget: 1.26,
+    } satisfies M6Input,
+    expectedHighlights: [
+      "P50 and P90 optimized PUE are estimated before controls are applied",
+      "Per-zone cooling setpoint plan highlights chiller and fan adjustments",
+      "Thermal risks are ranked by probability and impact to reliability",
+      "Memo quantifies annualized cooling-savings opportunity in USD",
+    ],
+  },
+
+  "m7-dubai-72mw-power": {
+    id: "m7-dubai-72mw-power",
+    module: "m7",
+    title: "Dubai 72 MW AI Block — power balancing",
+    description:
+      "Power-dispatch scenario for a high-load AI campus block. Balance utility imports, on-site generation, and battery reserves while controlling market-price exposure.",
+    input: {
+      facilityId: "dxb-1",
+      facilityName: "Dubai AI Campus · Block A",
+      geography: "UAE",
+      targetITMW: 72,
+      pue: 1.27,
+      utilityFeedMW: 86,
+      onsiteGenerationMW: 18,
+      batteryMWh: 56,
+      spotPriceUSDPerMWh: 122,
+      demandResponsePct: 11,
+      contractMode: "hybrid-ppa-spot",
+      reservePolicy: "N-1",
+    } satisfies M7Input,
+    expectedHighlights: [
+      "Dispatch windows reveal where reserve margins compress under peak demand",
+      "Cost model quantifies blended $/MWh impact across contract and spot exposure",
+      "Grid risks rank outage and volatility exposure with clear mitigations",
+      "Memo sets weekly operating interventions for reliability and cost control",
+    ],
+  },
+
+  "m8-abu-dhabi-35mw-tenants": {
+    id: "m8-abu-dhabi-35mw-tenants",
+    module: "m8",
+    title: "Abu Dhabi 35 MW pod — tenant fit and revenue optimization",
+    description:
+      "Commercial planning scenario for a new AI pod: rank tenant archetypes, optimize contracted mix, and project revenue and gross-margin ranges under market uncertainty.",
+    input: {
+      facilityId: "auh-2",
+      facilityName: "Abu Dhabi AI Campus · Pod 2",
+      geography: "UAE",
+      availableMW: 35,
+      committedMW: 13,
+      targetGpu: "B200",
+      pue: 1.24,
+      pricingMode: "hybrid",
+      contractTermYears: 5,
+      renewablePremiumPct: 9,
+      financingCostPct: 8,
+      targetGrossMarginPct: 31,
+    } satisfies M8Input,
+    expectedHighlights: [
+      "Tenant-fit ranking surfaces best archetypes for remaining sellable MW",
+      "Weighted price and gross-margin envelope is visible by downside/base/upside",
+      "Payback profile quantifies P50/P90 revenue recovery for commercial decisioning",
+      "Memo recommends mix-shifts to improve utilization resilience and margin quality",
+    ],
+  },
 };
 
 export function getPreset(id: string): DemoPreset | undefined {
   return PRESETS[id];
 }
 
-export function listPresetsForModule(module: "m1" | "m2" | "m3" | "m4"): DemoPreset[] {
+export function listPresetsForModule(module: "m1" | "m2" | "m3" | "m4" | "m5" | "m6" | "m7" | "m8"): DemoPreset[] {
   return Object.values(PRESETS).filter((p) => p.module === module);
 }

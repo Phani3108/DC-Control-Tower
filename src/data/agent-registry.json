@@ -1,0 +1,255 @@
+{
+  "$schema": "./AgentRegistry[]",
+  "lastUpdated": "2026-05-02",
+  "version": "1.0",
+  "agents": [
+    {
+      "id": "power_analyst",
+      "displayName": "Power Analyst",
+      "module": "m1",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m1_site.yaml",
+      "owner": "Site Intelligence"
+    },
+    {
+      "id": "sovereignty_analyst",
+      "displayName": "Sovereignty Analyst",
+      "module": "m1",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m1_site.yaml",
+      "owner": "Site Intelligence"
+    },
+    {
+      "id": "finance_analyst",
+      "displayName": "Finance Analyst",
+      "module": "m1",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m1_site.yaml",
+      "owner": "Site Intelligence"
+    },
+    {
+      "id": "climate_analyst",
+      "displayName": "Climate Analyst",
+      "module": "m1",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m1_site.yaml",
+      "owner": "Site Intelligence"
+    },
+    {
+      "id": "ic_synthesizer",
+      "displayName": "IC Synthesizer",
+      "module": "m1",
+      "model": "opus",
+      "promptPath": "fastapi/agents/roles/m1_site.yaml",
+      "owner": "Site Intelligence"
+    },
+    {
+      "id": "rfp_extractor",
+      "displayName": "RFP Extractor",
+      "module": "m2",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m2.yaml",
+      "owner": "Capacity Matcher"
+    },
+    {
+      "id": "proposal_writer",
+      "displayName": "Proposal Writer",
+      "module": "m2",
+      "model": "opus",
+      "promptPath": "fastapi/agents/roles/m2.yaml",
+      "owner": "Capacity Matcher"
+    },
+    {
+      "id": "ops_agent",
+      "displayName": "Ops Agent",
+      "module": "m3",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m3.yaml",
+      "owner": "Ops Tower"
+    },
+    {
+      "id": "infra_agent",
+      "displayName": "Infra Agent",
+      "module": "m3",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m3.yaml",
+      "owner": "Ops Tower"
+    },
+    {
+      "id": "risk_agent",
+      "displayName": "Risk Agent",
+      "module": "m3",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m3.yaml",
+      "owner": "Ops Tower"
+    },
+    {
+      "id": "rca_synthesizer",
+      "displayName": "RCA Synthesizer",
+      "module": "m3",
+      "model": "opus",
+      "promptPath": "fastapi/agents/roles/m3.yaml",
+      "owner": "Ops Tower"
+    },
+    {
+      "id": "nl_query_agent",
+      "displayName": "NL Query Agent",
+      "module": "m3",
+      "model": "opus",
+      "promptPath": "fastapi/agents/roles/m3.yaml",
+      "owner": "Ops Tower"
+    },
+    {
+      "id": "jurisdiction_analyst",
+      "displayName": "Jurisdiction Analyst",
+      "module": "m4",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m4_compliance.yaml",
+      "owner": "Sovereignty"
+    },
+    {
+      "id": "compliance_synthesizer",
+      "displayName": "Compliance Synthesizer",
+      "module": "m4",
+      "model": "opus",
+      "promptPath": "fastapi/agents/roles/m4_compliance.yaml",
+      "owner": "Sovereignty"
+    },
+    {
+      "id": "procurement_analyst",
+      "displayName": "Procurement Analyst",
+      "module": "m5",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m5_build.yaml",
+      "owner": "Build Tower"
+    },
+    {
+      "id": "permit_analyst",
+      "displayName": "Permit Analyst",
+      "module": "m5",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m5_build.yaml",
+      "owner": "Build Tower"
+    },
+    {
+      "id": "utility_analyst",
+      "displayName": "Utility Analyst",
+      "module": "m5",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m5_build.yaml",
+      "owner": "Build Tower"
+    },
+    {
+      "id": "epc_risk_analyst",
+      "displayName": "EPC Risk Analyst",
+      "module": "m5",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m5_build.yaml",
+      "owner": "Build Tower"
+    },
+    {
+      "id": "build_synthesizer",
+      "displayName": "Build Synthesizer",
+      "module": "m5",
+      "model": "opus",
+      "promptPath": "fastapi/agents/roles/m5_build.yaml",
+      "owner": "Build Tower"
+    },
+    {
+      "id": "hvac_analyst",
+      "displayName": "HVAC Analyst",
+      "module": "m6",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m6_cooling.yaml",
+      "owner": "Cooling Copilot"
+    },
+    {
+      "id": "thermal_modeling_analyst",
+      "displayName": "Thermal Modeling Analyst",
+      "module": "m6",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m6_cooling.yaml",
+      "owner": "Cooling Copilot"
+    },
+    {
+      "id": "cooling_finops_analyst",
+      "displayName": "Cooling FinOps Analyst",
+      "module": "m6",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m6_cooling.yaml",
+      "owner": "Cooling Copilot"
+    },
+    {
+      "id": "cooling_synthesizer",
+      "displayName": "Cooling Synthesizer",
+      "module": "m6",
+      "model": "opus",
+      "promptPath": "fastapi/agents/roles/m6_cooling.yaml",
+      "owner": "Cooling Copilot"
+    },
+    {
+      "id": "grid_operations_analyst",
+      "displayName": "Grid Operations Analyst",
+      "module": "m7",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m7_power.yaml",
+      "owner": "Power Balancing"
+    },
+    {
+      "id": "market_dispatch_analyst",
+      "displayName": "Market Dispatch Analyst",
+      "module": "m7",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m7_power.yaml",
+      "owner": "Power Balancing"
+    },
+    {
+      "id": "resiliency_analyst",
+      "displayName": "Resiliency Analyst",
+      "module": "m7",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m7_power.yaml",
+      "owner": "Power Balancing"
+    },
+    {
+      "id": "power_synthesizer",
+      "displayName": "Power Synthesizer",
+      "module": "m7",
+      "model": "opus",
+      "promptPath": "fastapi/agents/roles/m7_power.yaml",
+      "owner": "Power Balancing"
+    },
+    {
+      "id": "tenant_strategy_analyst",
+      "displayName": "Tenant Strategy Analyst",
+      "module": "m8",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m8_tenant.yaml",
+      "owner": "Tenant Fit"
+    },
+    {
+      "id": "revenue_finops_analyst",
+      "displayName": "Revenue FinOps Analyst",
+      "module": "m8",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m8_tenant.yaml",
+      "owner": "Tenant Fit"
+    },
+    {
+      "id": "portfolio_risk_analyst",
+      "displayName": "Portfolio Risk Analyst",
+      "module": "m8",
+      "model": "sonnet",
+      "promptPath": "fastapi/agents/roles/m8_tenant.yaml",
+      "owner": "Tenant Fit"
+    },
+    {
+      "id": "tenant_synthesizer",
+      "displayName": "Tenant Synthesizer",
+      "module": "m8",
+      "model": "opus",
+      "promptPath": "fastapi/agents/roles/m8_tenant.yaml",
+      "owner": "Tenant Fit"
+    }
+  ]
+}

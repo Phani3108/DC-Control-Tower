@@ -7,6 +7,10 @@ import {
   M2Illustration,
   M3Illustration,
   M4Illustration,
+  M5Illustration,
+  M6Illustration,
+  M7Illustration,
+  M8Illustration,
 } from "@/components/home/ModuleIllustrations";
 import { DemoStepper } from "@/components/home/DemoStepper";
 import { Footer } from "@/components/home/Footer";
@@ -14,7 +18,7 @@ import { Footer } from "@/components/home/Footer";
 /**
  * DC Control Tower — home.
  *
- * Crosslinq-inspired full-bleed hero → stats band → 4 module sections
+ * Crosslinq-inspired full-bleed hero → stats band → 8 module sections
  * (alternating text/illustration) → demo stepper → footer with health badge.
  */
 export default function HomePage() {
@@ -90,6 +94,76 @@ export default function HomePage() {
         presetHref="/m4-sovereignty?preset=m4-ksa-fintech-eu-data"
         presetLabel="Demo · KSA fintech + EU data"
         illustration={<M4Illustration />}
+        reverse
+      />
+
+      <ModuleSection
+        id="m5"
+        index={5}
+        eyebrow="M5 · BUILD TOWER"
+        title="Compress delivery risk before it hits commissioning."
+        description="Construction-orchestration workspace for campus delivery teams. Model permit complexity, utility queue exposure, long-lead procurement pressure, and EPC readiness to forecast P50/P90 energization and capex-at-risk."
+        bullets={[
+          "Critical-path milestones with owner-level accountability",
+          "Risk heatmap quantifying schedule and dollar exposure",
+          "Project memo with intervention priorities for executive review",
+        ]}
+        href="/m5-build-tower"
+        presetHref="/m5-build-tower?preset=m5-jakarta-19mw-phase1"
+        presetLabel="Demo · Jakarta 19.2 MW"
+        illustration={<M5Illustration />}
+      />
+
+      <ModuleSection
+        id="m6"
+        index={6}
+        eyebrow="M6 · COOLING COPILOT"
+        title="Tune cooling in real time for dense AI pods."
+        description="Closed-loop cooling optimization workspace for high-density GPU facilities. Simulate zone-level setpoint adjustments, quantify thermal risk, and estimate PUE improvement with annualized savings impact."
+        bullets={[
+          "Per-zone cooling-control plan with supply-temp, fan, and chiller recommendations",
+          "Thermal risk ranking tied to reliability impact and hotspot probability",
+          "Cooling memo export for operations and executive energy-governance review",
+        ]}
+        href="/m6-cooling-copilot"
+        presetHref="/m6-cooling-copilot?preset=m6-riyadh-64mw-cooling"
+        presetLabel="Demo · Riyadh 64 MW"
+        illustration={<M6Illustration />}
+        reverse
+      />
+
+      <ModuleSection
+        id="m7"
+        index={7}
+        eyebrow="M7 · POWER BALANCING COPILOT"
+        title="Balance power reliability and energy economics continuously."
+        description="Grid-aware dispatch workspace for AI campuses. Model utility imports, on-site generation, and battery reserve policy across operating windows while quantifying curtailment exposure and blended cost impact."
+        bullets={[
+          "Window-level dispatch plan with margin and marginal-cost signals",
+          "Reserve-policy controls linked to outage and volatility exposure",
+          "Executive power memo for weekly reliability and FinOps governance",
+        ]}
+        href="/m7-power-balancer"
+        presetHref="/m7-power-balancer?preset=m7-dubai-72mw-power"
+        presetLabel="Demo · Dubai 72 MW"
+        illustration={<M7Illustration />}
+      />
+
+      <ModuleSection
+        id="m8"
+        index={8}
+        eyebrow="M8 · TENANT FIT AND REVENUE OPTIMIZER"
+        title="Monetize capacity with risk-adjusted tenant mix intelligence."
+        description="Commercial planning workspace for AI campuses. Score tenant archetype fit, optimize contracted mix, and project downside/base/upside revenue with gross-margin and payback visibility before signing commitments."
+        bullets={[
+          "Tenant-fit ranking tied to utilization, pricing resilience, and risk profile",
+          "Revenue scenarios with weighted gross-margin and occupancy envelopes",
+          "Executive memo for IC and commercial governance sign-off",
+        ]}
+        href="/m8-tenant-optimizer"
+        presetHref="/m8-tenant-optimizer?preset=m8-abu-dhabi-35mw-tenants"
+        presetLabel="Demo · Abu Dhabi 35 MW"
+        illustration={<M8Illustration />}
         reverse
       />
 
