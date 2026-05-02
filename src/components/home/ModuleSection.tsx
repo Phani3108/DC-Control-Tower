@@ -9,11 +9,21 @@ import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { motion } from "framer-motion";
+
+export type ValueTier = "revenue" | "margin" | "velocity" | "risk";
+
+const TIER_STYLE: Record<ValueTier, { label: string; color: string; bg: string }> = {
+  revenue: { label: "REVENUE", color: "#4ADE80", bg: "rgba(74,222,128,0.12)" },
+  margin: { label: "MARGIN", color: "#C9A66B", bg: "rgba(201,166,107,0.14)" },
+  velocity: { label: "VELOCITY", color: "#60A5FA", bg: "rgba(96,165,250,0.14)" },
+  risk: { label: "RISK", color: "#EF6A6A", bg: "rgba(239,106,106,0.14)" },
+};
 
 export interface ModuleSectionProps {
   id: string;
-  index: number;           // 1..7 for sequencing
+  index: number;           // 1..N for sequencing
   eyebrow: string;
   title: string;
   description: string;
@@ -23,6 +33,8 @@ export interface ModuleSectionProps {
   presetLabel: string;
   illustration: React.ReactNode;
   reverse?: boolean;
+  valueTier?: ValueTier;
+  valueLine?: string;
 }
 
 export function ModuleSection({
@@ -37,7 +49,10 @@ export function ModuleSection({
   presetLabel,
   illustration,
   reverse = false,
+  valueTier,
+  valueLine,
 }: ModuleSectionProps) {
+  const tier = valueTier ? TIER_STYLE[valueTier] : null;
   return (
     <Box
       component="section"
@@ -66,19 +81,34 @@ export function ModuleSection({
             transition={{ duration: 0.6, delay: Math.min(index * 0.03, 0.18) }}
             style={{ order: reverse ? 2 : 1 }}
           >
-            <Chip
-              label={eyebrow}
-              size="small"
-              sx={{
-                mb: 3,
-                bgcolor: "rgba(201,166,107,0.12)",
-                color: "primary.light",
-                border: "1px solid rgba(201,166,107,0.24)",
-                fontWeight: 600,
-                letterSpacing: "0.06em",
-                fontSize: 11,
-              }}
-            />
+            <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 3, flexWrap: "wrap", gap: 1 }}>
+              <Chip
+                label={eyebrow}
+                size="small"
+                sx={{
+                  bgcolor: "rgba(201,166,107,0.12)",
+                  color: "primary.light",
+                  border: "1px solid rgba(201,166,107,0.24)",
+                  fontWeight: 600,
+                  letterSpacing: "0.06em",
+                  fontSize: 11,
+                }}
+              />
+              {tier && (
+                <Chip
+                  label={tier.label}
+                  size="small"
+                  sx={{
+                    bgcolor: tier.bg,
+                    color: tier.color,
+                    border: `1px solid ${tier.color}33`,
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    fontSize: 10,
+                  }}
+                />
+              )}
+            </Stack>
             <Typography
               variant="h2"
               sx={{
@@ -94,10 +124,30 @@ export function ModuleSection({
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ mb: 3, fontSize: "1.0625rem", lineHeight: 1.6 }}
+              sx={{ mb: valueLine ? 2 : 3, fontSize: "1.0625rem", lineHeight: 1.6 }}
             >
               {description}
             </Typography>
+
+            {valueLine && tier && (
+              <Box
+                sx={{
+                  mb: 3,
+                  p: 2,
+                  borderRadius: 1.5,
+                  bgcolor: tier.bg,
+                  border: `1px solid ${tier.color}40`,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1.5,
+                }}
+              >
+                <TrendingUpIcon sx={{ color: tier.color, fontSize: 22, flexShrink: 0 }} aria-hidden />
+                <Typography variant="body2" sx={{ color: "text.primary", fontWeight: 500, lineHeight: 1.5 }}>
+                  {valueLine}
+                </Typography>
+              </Box>
+            )}
 
             <Stack spacing={1.2} sx={{ mb: 4 }}>
               {bullets.map((b) => (

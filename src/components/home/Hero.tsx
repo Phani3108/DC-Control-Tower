@@ -104,7 +104,7 @@ export function Hero() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Design, match, run, and govern gigawatts of AI compute.
+              Monetise every megawatt. Defend every margin point.
             </Typography>
             <Typography
               variant="h6"
@@ -115,16 +115,16 @@ export function Hero() {
                 textTransform: "none",
                 letterSpacing: 0,
                 fontSize: { xs: "1rem", md: "1.125rem" },
-                maxWidth: 520,
+                maxWidth: 560,
               }}
             >
-              One product. Eight modules. Every number cited. Strategy, GTM, power balancing, cooling control, construction execution, operations, sovereignty, and tenant monetization for the next 4,000 MW of AI-ready capacity.
+              The control tower for 4,000 MW of AI-ready capacity. Eight modules sequenced by P&amp;L impact — tenant revenue, energy margin, capital velocity, operational risk — every number cited, every decision auditable.
             </Typography>
 
             <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <Button
                 component={Link}
-                href="/m1-site-intelligence?preset=m1-sea-500mw"
+                href="/m8-tenant-optimizer?preset=m8-abu-dhabi-35mw-tenants"
                 variant="contained"
                 color="primary"
                 size="large"
@@ -140,7 +140,7 @@ export function Hero() {
                   },
                 }}
               >
-                See live demo
+                See the revenue lever
               </Button>
               <Button
                 component={Link}
@@ -162,7 +162,7 @@ export function Hero() {
             </Stack>
 
             <Stack direction="row" spacing={2} sx={{ mt: 5, flexWrap: "wrap", gap: 1 }}>
-              {["SSE multi-agent", "Every number cited", "WCAG 2.1 AA", "Enterprise-ready"].map((tag) => (
+              {["P&L-first sequencing", "Every number cited", "SSE multi-agent", "Enterprise-ready"].map((tag) => (
                 <Chip
                   key={tag}
                   label={tag}
