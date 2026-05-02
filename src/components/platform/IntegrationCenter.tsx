@@ -29,6 +29,15 @@ interface IntegrationTestResult {
   target?: string;
   detail: string;
   statusCode?: number;
+  diagnostics?: Record<string, string | number | boolean | null>;
+}
+
+function diagnosticsLine(diagnostics: IntegrationTestResult["diagnostics"]): string | null {
+  if (!diagnostics) return null;
+  const entries = Object.entries(diagnostics)
+    .filter(([, value]) => value !== undefined)
+    .map(([key, value]) => `${key}=${String(value)}`);
+  return entries.length > 0 ? entries.join(" · ") : null;
 }
 
 interface IntegrationView {
@@ -650,6 +659,9 @@ export function IntegrationCenter() {
                                   {integration.lastTest.detail}
                                   {integration.lastTest.target ? ` · target: ${integration.lastTest.target}` : ""}
                                   {` · ${integration.lastTest.durationMs}ms · ${integration.lastTest.mode}`}
+                                  {diagnosticsLine(integration.lastTest.diagnostics)
+                                    ? ` · ${diagnosticsLine(integration.lastTest.diagnostics)}`
+                                    : ""}
                                 </Alert>
                               ) : (
                                 <Alert severity="info">No test run yet.</Alert>
@@ -660,6 +672,9 @@ export function IntegrationCenter() {
                                   {`Deep: ${integration.lastDeepTest.detail}`}
                                   {integration.lastDeepTest.target ? ` · target: ${integration.lastDeepTest.target}` : ""}
                                   {` · ${integration.lastDeepTest.durationMs}ms · ${integration.lastDeepTest.mode}`}
+                                  {diagnosticsLine(integration.lastDeepTest.diagnostics)
+                                    ? ` · ${diagnosticsLine(integration.lastDeepTest.diagnostics)}`
+                                    : ""}
                                 </Alert>
                               ) : (
                                 <Alert severity="info">No deep test run yet.</Alert>

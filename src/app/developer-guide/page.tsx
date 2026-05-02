@@ -26,6 +26,7 @@ const designRules = [
   "Runtime always falls back to process.env when frontend settings are absent.",
   "Every external dependency should be testable from /integrations and via /api/integrations/test.",
   "Phase-2/2.1 deep tests add provider-specific checks: AI model-list validation, Postgres/MySQL login+query, Redis PING, and Mongo admin ping.",
+  "Phase-2.2 adds structured diagnostics in deep-test responses for operator-friendly troubleshooting.",
 ];
 
 const troubleshooting = [

@@ -179,3 +179,10 @@ Deep-check behavior:
 - other integrations: fallback to standard connectivity probe with explicit note.
 
 Deep test results are persisted as `lastDeepTest` for frontend visibility.
+
+`IntegrationTestResult` may include `diagnostics` with provider-specific safe metadata, for example:
+
+- AI: provider id + parsed model count
+- PostgreSQL/MySQL: host/port/db
+- Redis: host/port/selectedDb/ping/server version
+- MongoDB: db/authSource/server version/srv indicator

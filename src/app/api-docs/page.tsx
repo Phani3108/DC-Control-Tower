@@ -80,7 +80,7 @@ const examplePayloads = [
 ];
 
 const responseShapes = [
-  "IntegrationTestResult: ok, checkedAt, durationMs, mode, target, detail, statusCode.",
+  "IntegrationTestResult: ok, checkedAt, durationMs, mode, target, detail, statusCode, diagnostics.",
   "IntegrationView: id, kind, category, enabled, sourcePreference, URLs, timeout, testPath, lastTest, lastDeepTest, secretPreview flags.",
   "Sandbox summary: ok, executedAt, checks[] with id + pass/fail detail.",
 ];

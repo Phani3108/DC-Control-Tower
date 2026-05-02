@@ -82,6 +82,7 @@ export interface IntegrationTestResult {
   target?: string;
   detail: string;
   statusCode?: number;
+  diagnostics?: Record<string, string | number | boolean | null>;
 }
 
 export interface RuntimeIntegration {
@@ -767,6 +768,7 @@ function failureResult(
   detail: string,
   target?: string,
   statusCode?: number,
+  diagnostics?: Record<string, string | number | boolean | null>,
 ): IntegrationTestResult {
   return {
     ok: false,
@@ -776,6 +778,7 @@ function failureResult(
     target,
     detail,
     statusCode,
+    diagnostics,
   };
 }
 
@@ -785,6 +788,7 @@ function successResult(
   detail: string,
   target?: string,
   statusCode?: number,
+  diagnostics?: Record<string, string | number | boolean | null>,
 ): IntegrationTestResult {
   return {
     ok: true,
@@ -794,6 +798,7 @@ function successResult(
     target,
     detail,
     statusCode,
+    diagnostics,
   };
 }
 
@@ -922,7 +927,17 @@ async function runDeepAiProbe(integration: RuntimeIntegration, start: number): P
     const payload = (await response.json().catch(() => null)) as unknown;
     const modelCount = parseModelCount(payload);
     if (modelCount <= 0) {
-      return failureResult(start, mode, "Endpoint reachable but model list payload is empty or unrecognized.", target, response.status);
+      return failureResult(
+        start,
+        mode,
+        "Endpoint reachable but model list payload is empty or unrecognized.",
+        target,
+        response.status,
+        {
+          provider: integration.id,
+          modelCount,
+        },
+      );
     }
 
     return successResult(
@@ -931,6 +946,10 @@ async function runDeepAiProbe(integration: RuntimeIntegration, start: number): P
       `${integration.name}: model list check succeeded (${modelCount} models).`,
       target,
       response.status,
+      {
+        provider: integration.id,
+        modelCount,
+      },
     );
   } catch (error) {
     return failureResult(
@@ -965,11 +984,20 @@ async function runDeepPostgresProbe(integration: RuntimeIntegration, start: numb
     await pgClient.connect();
     const result = await pgClient.query<{ db?: string }>("SELECT current_database() AS db");
     const db = result.rows[0]?.db;
+    const port = Number(url.port || "5432");
     return successResult(
       start,
       mode,
       `PostgreSQL login + query check succeeded${db ? ` (db=${db})` : ""}.`,
-      `${url.hostname}:${url.port || "5432"}`,
+      `${url.hostname}:${port}`,
+      undefined,
+      {
+        provider: "postgres",
+        host: url.hostname,
+        port,
+        database: db ?? null,
+        sslMode: sslMode ?? "none",
+      },
     );
   } catch (error) {
     return failureResult(start, mode, error instanceof Error ? error.message : "PostgreSQL deep test failed.", dsn);
@@ -999,11 +1027,20 @@ async function runDeepMysqlProbe(integration: RuntimeIntegration, start: number)
       db = typeof maybeDb === "string" ? maybeDb : undefined;
     }
 
+    const port = Number(url.port || "3306");
+
     return successResult(
       start,
       mode,
       `MySQL login + query check succeeded${db ? ` (db=${db})` : ""}.`,
-      `${url.hostname}:${url.port || "3306"}`,
+      `${url.hostname}:${port}`,
+      undefined,
+      {
+        provider: "mysql",
+        host: url.hostname,
+        port,
+        database: db ?? null,
+      },
     );
   } catch (error) {
     return failureResult(start, mode, error instanceof Error ? error.message : "MySQL deep test failed.", dsn);
@@ -1037,20 +1074,58 @@ async function runDeepRedisProbe(integration: RuntimeIntegration, start: number)
 
     await redisClient.connect();
     const pong = await redisClient.ping();
+    let redisVersion: string | undefined;
+    try {
+      const infoRaw = await (
+        redisClient as { sendCommand: (args: string[]) => Promise<unknown> }
+      ).sendCommand(["INFO", "server"]);
+      const infoText = typeof infoRaw === "string" ? infoRaw : "";
+      const match = infoText.match(/redis_version:([^\r\n]+)/);
+      redisVersion = match?.[1]?.trim();
+    } catch {
+      redisVersion = undefined;
+    }
+
+    const selectedDb = (() => {
+      const rawPath = url.pathname.replace(/^\//, "");
+      if (!rawPath) return 0;
+      const parsed = Number(rawPath);
+      return Number.isFinite(parsed) ? parsed : 0;
+    })();
+
+    const port = Number(url.port || "6379");
     if (pong.toUpperCase() !== "PONG") {
       return failureResult(
         start,
         mode,
         `Redis deep test received unexpected ping response: ${pong}`,
-        `${url.hostname}:${url.port || "6379"}`,
+        `${url.hostname}:${port}`,
+        undefined,
+        {
+          provider: "redis",
+          host: url.hostname,
+          port,
+          selectedDb,
+          ping: pong,
+          redisVersion: redisVersion ?? null,
+        },
       );
     }
 
     return successResult(
       start,
       mode,
-      "Redis deep test succeeded (PING -> PONG).",
-      `${url.hostname}:${url.port || "6379"}`,
+      `Redis deep test succeeded (PING -> ${pong})${redisVersion ? ` · v${redisVersion}` : ""}.`,
+      `${url.hostname}:${port}`,
+      undefined,
+      {
+        provider: "redis",
+        host: url.hostname,
+        port,
+        selectedDb,
+        ping: pong,
+        redisVersion: redisVersion ?? null,
+      },
     );
   } catch (error) {
     return failureResult(start, mode, error instanceof Error ? error.message : "Redis deep test failed.", dsn);
@@ -1081,6 +1156,8 @@ async function runDeepMongoProbe(integration: RuntimeIntegration, start: number)
 
     await mongoClient.connect();
     const pingResult = await mongoClient.db("admin").admin().ping();
+    const buildInfoRaw = await mongoClient.db("admin").command({ buildInfo: 1 });
+    const buildInfo = buildInfoRaw as { version?: unknown };
     const ok = typeof pingResult.ok === "number" ? pingResult.ok === 1 : true;
     if (!ok) {
       return failureResult(
@@ -1088,13 +1165,34 @@ async function runDeepMongoProbe(integration: RuntimeIntegration, start: number)
         mode,
         `Mongo deep test returned unexpected ping payload: ${JSON.stringify(pingResult)}`,
         url.hostname,
+        undefined,
+        {
+          provider: "mongodb",
+          ok: false,
+          pingOk: typeof pingResult.ok === "number" ? pingResult.ok : null,
+        },
       );
     }
 
     const targetHost = url.protocol.includes("+srv")
       ? `${url.hostname} (srv)`
       : `${url.hostname}:${url.port || "27017"}`;
-    return successResult(start, mode, "MongoDB deep test succeeded (db.admin().ping()).", targetHost);
+    const defaultDb = url.pathname.replace(/^\//, "") || "admin";
+    const authSource = url.searchParams.get("authSource") ?? "default";
+    return successResult(
+      start,
+      mode,
+      `MongoDB deep test succeeded (db.admin().ping())${buildInfo.version ? ` · v${buildInfo.version}` : ""}.`,
+      targetHost,
+      undefined,
+      {
+        provider: "mongodb",
+        database: defaultDb,
+        authSource,
+        serverVersion: typeof buildInfo.version === "string" ? buildInfo.version : null,
+        srv: url.protocol.includes("+srv"),
+      },
+    );
   } catch (error) {
     return failureResult(start, mode, error instanceof Error ? error.message : "Mongo deep test failed.", dsn);
   } finally {

@@ -91,6 +91,12 @@ cd fastapi && uvicorn main:app --reload
   - `mongodb-events`: actual `db.admin().ping()` check.
 - Other providers currently use standard probe fallback until provider-specific deep checks are added.
 
+## Phase-2.2 diagnostics
+
+- Deep tests now emit a structured `diagnostics` object for frontend visibility and API consumers.
+- Diagnostics are safe metadata only and do not include secrets.
+- The Integration Center surfaces these details inline with deep test results.
+
 ## Current Integration Inventory
 
 - Backend:
