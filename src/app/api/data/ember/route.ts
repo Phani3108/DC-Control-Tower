@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getBucket } from "@/lib/shared/rate-limit";
 import snapshot from "@/data/snapshots/ember-2026-04.json";
+import { getRuntimeIntegration } from "@/lib/integrations/runtime";
 
 /**
  * Ember Electricity Data proxy.
@@ -28,7 +29,9 @@ export async function GET(req: NextRequest) {
   const bucket = getBucket("ember", BUCKET);
   const country = req.nextUrl.searchParams.get("country");
 
-  const EMBER_API_KEY = process.env.EMBER_API_KEY;
+  const integration = await getRuntimeIntegration("ember-data");
+  const EMBER_API_KEY = integration?.apiKey ?? process.env.EMBER_API_KEY;
+  const emberBase = integration?.activeUrl ?? "https://api.ember-energy.org";
 
   // Fast path — always have the snapshot ready.
   const baseline: Payload = {
@@ -44,7 +47,7 @@ export async function GET(req: NextRequest) {
 
   try {
     // Best-effort live fetch. If Ember's endpoint shape changes we still fall back.
-    const url = new URL("https://api.ember-energy.org/v1/electricity");
+    const url = new URL("/v1/electricity", emberBase);
     if (country) url.searchParams.set("country", country);
     const res = await fetch(url, {
       headers: { Authorization: `Bearer ${EMBER_API_KEY}` },

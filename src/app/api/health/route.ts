@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getRuntimeIntegration } from "@/lib/integrations/runtime";
 
 /**
  * Health endpoint — reports both the Next.js tier and the FastAPI tier
@@ -18,7 +19,8 @@ const START_TS = Date.now();
 
 export async function GET(): Promise<NextResponse<HealthResult>> {
   const now = new Date();
-  const agentsUrl = process.env.FASTAPI_URL ?? "http://localhost:8000";
+  const fastapi = await getRuntimeIntegration("fastapi-agents");
+  const agentsUrl = fastapi?.activeUrl ?? process.env.FASTAPI_URL ?? "http://localhost:8000";
   let agents: HealthResult["agents"] = { status: "down", url: agentsUrl };
 
   try {

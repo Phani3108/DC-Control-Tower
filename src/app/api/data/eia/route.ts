@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getBucket } from "@/lib/shared/rate-limit";
+import { getRuntimeIntegration } from "@/lib/integrations/runtime";
 
 /**
  * US EIA Open Data API v2 proxy.
@@ -26,7 +27,9 @@ const FALLBACK = {
 
 export async function GET(req: NextRequest) {
   const bucket = getBucket("eia", BUCKET);
-  const EIA_API_KEY = process.env.EIA_API_KEY;
+  const integration = await getRuntimeIntegration("eia-data");
+  const EIA_API_KEY = integration?.apiKey ?? process.env.EIA_API_KEY;
+  const eiaBase = integration?.activeUrl ?? "https://api.eia.gov";
   const region = req.nextUrl.searchParams.get("region") ?? "US-NATIONAL";
 
   if (!EIA_API_KEY || !bucket.take()) {
@@ -43,7 +46,7 @@ export async function GET(req: NextRequest) {
 
   try {
     // Representative EIA endpoint — shape may need adjustment against the real schema
-    const url = new URL("https://api.eia.gov/v2/electricity/retail-sales/data/");
+    const url = new URL("/v2/electricity/retail-sales/data/", eiaBase);
     url.searchParams.set("api_key", EIA_API_KEY);
     url.searchParams.set("frequency", "monthly");
     const res = await fetch(url, { next: { revalidate: 86400 } });

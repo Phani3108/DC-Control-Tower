@@ -45,5 +45,9 @@ yarn-error.log*
 src/data/agent-cache/*.json
 !src/data/agent-cache/.gitkeep
 
+# Frontend integration settings (contains secrets)
+src/data/integrations/settings.local.json
+!src/data/integrations/.gitkeep
+
 # Vercel
 .vercel/

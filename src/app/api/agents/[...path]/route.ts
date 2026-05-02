@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "node:fs";
 import nodePath from "node:path";
+import { getRuntimeIntegration } from "@/lib/integrations/runtime";
 
 /**
  * SSE-capable proxy from Next.js to FastAPI.
@@ -19,7 +20,6 @@ import nodePath from "node:path";
 export const runtime = "nodejs";           // Needed for ReadableStream + fs fixtures
 export const dynamic = "force-dynamic";    // Never cache agent responses
 
-const FASTAPI_URL = process.env.FASTAPI_URL ?? "http://localhost:8000";
 const MOCK_AGENTS = process.env.MOCK_AGENTS === "true";
 const CACHE_DIR = nodePath.join(process.cwd(), "src", "data", "agent-cache");
 
@@ -134,8 +134,10 @@ async function offlineResponse(routePath: string, bodyText: string | undefined) 
 }
 
 async function forward(req: NextRequest, segments: string[]) {
+  const fastapi = await getRuntimeIntegration("fastapi-agents");
+  const fastapiUrl = fastapi?.activeUrl ?? process.env.FASTAPI_URL ?? "http://localhost:8000";
   const routePath = segments.join("/");
-  const target = `${FASTAPI_URL}/v1/agents/${routePath}`;
+  const target = `${fastapiUrl}/v1/agents/${routePath}`;
   const bodyText = req.method === "POST" ? await req.text() : undefined;
 
   if (MOCK_AGENTS) {

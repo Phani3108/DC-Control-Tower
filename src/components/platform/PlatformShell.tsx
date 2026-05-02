@@ -39,6 +39,14 @@ export function PlatformShell() {
               <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
                 Knowledge graph relationships, agent inventory, and governance telemetry in one operational plane.
               </Typography>
+              <Button
+                component={Link}
+                href="/integrations"
+                size="small"
+                sx={{ mt: 1.2, px: 0, color: "primary.light" }}
+              >
+                Open Integration Center
+              </Button>
             </Box>
           </Stack>
         </Container>

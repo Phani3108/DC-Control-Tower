@@ -24,6 +24,9 @@
 
 ## 🆕 What's new in v1.0
 
+- 🔧 **Integration Center** — [`/integrations`](http://localhost:3000/integrations) to configure AI APIs, database DSNs, and external connectors from frontend with `.env` fallback
+- 🧪 **Connection test APIs** — `/api/integrations/config`, `/api/integrations/test`, `/api/integrations/test-run` with frontend-visible pass/fail details
+- 📘 **Developer docs pages** — in-app [`/developer-guide`](http://localhost:3000/developer-guide) and [`/api-docs`](http://localhost:3000/api-docs), plus repo docs under [`docs/DEVELOPER_GUIDE.md`](./docs/DEVELOPER_GUIDE.md) and [`docs/API_DOCS.md`](./docs/API_DOCS.md)
 - 📚 **Citation system** — [`citations.json`](./src/data/citations/citations.json) registers every public source; every data record + engine output ships a `cite_ids[]` array; CI fails if an unknown id slips in
 - 🔌 **Live data proxies** — Ember / IEA / EIA with ISR + SWR caching + offline snapshot fallback
 - 🧮 **Defensible engines** — NERC/FERC N-1 for power availability; IEA WEO 2024 forecast for power cost; SemiAnalysis 2025 for GPU capex; Uptime Institute 2024 for staff + PUE; CBRE H2 2025 for rack pricing

@@ -64,6 +64,33 @@ export function Footer() {
               </Typography>
               <Typography
                 component={Link}
+                href="/integrations"
+                variant="caption"
+                color="text.secondary"
+                sx={{ textDecoration: "none", "&:hover": { color: "primary.light" } }}
+              >
+                Integrations
+              </Typography>
+              <Typography
+                component={Link}
+                href="/developer-guide"
+                variant="caption"
+                color="text.secondary"
+                sx={{ textDecoration: "none", "&:hover": { color: "primary.light" } }}
+              >
+                Developer Guide
+              </Typography>
+              <Typography
+                component={Link}
+                href="/api-docs"
+                variant="caption"
+                color="text.secondary"
+                sx={{ textDecoration: "none", "&:hover": { color: "primary.light" } }}
+              >
+                API Docs
+              </Typography>
+              <Typography
+                component={Link}
                 href="/#architecture"
                 variant="caption"
                 color="text.secondary"

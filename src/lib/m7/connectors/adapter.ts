@@ -1,4 +1,5 @@
 import type { M7IngestionEnvelope, MarketPriceSignal, UtilityTelemetrySignal } from "./contract";
+import { getRuntimeIntegration, type RuntimeIntegration } from "@/lib/integrations/runtime";
 
 interface UtilityPayload {
   utilityFeedMW?: number;
@@ -37,38 +38,39 @@ function readEnv(name: string): string | undefined {
   return value.length > 0 ? value : undefined;
 }
 
-function readTimeoutMs(prefix: ProviderEnvPrefix): number {
+function readTimeoutMs(integration: RuntimeIntegration | null, prefix: ProviderEnvPrefix): number {
   const fromProvider = readEnv(`${prefix}_TIMEOUT_MS`);
   const fromGlobal = readEnv("M7_CONNECTOR_TIMEOUT_MS");
-  const raw = fromProvider ?? fromGlobal;
-  const parsed = raw ? Number(raw) : NaN;
-  return Number.isFinite(parsed) && parsed > 0 ? Math.round(parsed) : 2500;
+  const fromEnv = fromProvider ?? fromGlobal;
+  const parsed = fromEnv ? Number(fromEnv) : NaN;
+  const envTimeout = Number.isFinite(parsed) && parsed > 0 ? Math.round(parsed) : undefined;
+  return integration?.timeoutMs ?? envTimeout ?? 2500;
 }
 
-function buildAuthHeaders(prefix: ProviderEnvPrefix): HeadersInit {
+function buildAuthHeaders(integration: RuntimeIntegration | null, prefix: ProviderEnvPrefix): HeadersInit {
   const headers: Record<string, string> = { Accept: "application/json" };
 
-  const bearerToken = readEnv(`${prefix}_BEARER_TOKEN`);
+  const bearerToken = integration?.bearerToken ?? readEnv(`${prefix}_BEARER_TOKEN`);
   if (bearerToken) {
     headers.Authorization = bearerToken.toLowerCase().startsWith("bearer ")
       ? bearerToken
       : `Bearer ${bearerToken}`;
   }
 
-  const apiKey = readEnv(`${prefix}_API_KEY`);
+  const apiKey = integration?.apiKey ?? readEnv(`${prefix}_API_KEY`);
   if (apiKey) {
-    const apiKeyHeader = readEnv(`${prefix}_API_KEY_HEADER`) ?? "x-api-key";
+    const apiKeyHeader = integration?.apiKeyHeader ?? readEnv(`${prefix}_API_KEY_HEADER`) ?? "x-api-key";
     headers[apiKeyHeader] = apiKey;
   }
 
-  const basicUser = readEnv(`${prefix}_BASIC_USERNAME`);
-  const basicPass = readEnv(`${prefix}_BASIC_PASSWORD`);
+  const basicUser = integration?.basicUsername ?? readEnv(`${prefix}_BASIC_USERNAME`);
+  const basicPass = integration?.basicPassword ?? readEnv(`${prefix}_BASIC_PASSWORD`);
   if (basicUser && basicPass && !headers.Authorization) {
     headers.Authorization = `Basic ${Buffer.from(`${basicUser}:${basicPass}`).toString("base64")}`;
   }
 
-  const customHeaderName = readEnv(`${prefix}_AUTH_HEADER_NAME`);
-  const customHeaderValue = readEnv(`${prefix}_AUTH_HEADER_VALUE`);
+  const customHeaderName = integration?.authHeaderName ?? readEnv(`${prefix}_AUTH_HEADER_NAME`);
+  const customHeaderValue = integration?.authHeaderValue ?? readEnv(`${prefix}_AUTH_HEADER_VALUE`);
   if (customHeaderName && customHeaderValue) {
     headers[customHeaderName] = customHeaderValue;
   }
@@ -76,13 +78,13 @@ function buildAuthHeaders(prefix: ProviderEnvPrefix): HeadersInit {
   return headers;
 }
 
-async function fetchJson(url: string, prefix: ProviderEnvPrefix): Promise<unknown> {
-  const timeoutMs = readTimeoutMs(prefix);
+async function fetchJson(url: string, integration: RuntimeIntegration | null, prefix: ProviderEnvPrefix): Promise<unknown> {
+  const timeoutMs = readTimeoutMs(integration, prefix);
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const res = await fetch(url, {
-      headers: buildAuthHeaders(prefix),
+      headers: buildAuthHeaders(integration, prefix),
       cache: "no-store",
       signal: controller.signal,
     });
@@ -154,14 +156,19 @@ function mockMarket(): MarketPriceSignal {
 }
 
 export async function ingestM7Signals(): Promise<M7IngestionEnvelope> {
-  const utilityUrl = process.env.M7_UTILITY_TELEMETRY_URL;
-  const marketUrl = process.env.M7_MARKET_PRICE_URL;
+  const [utilityIntegration, marketIntegration] = await Promise.all([
+    getRuntimeIntegration("m7-utility-feed"),
+    getRuntimeIntegration("m7-market-feed"),
+  ]);
+
+  const utilityUrl = utilityIntegration?.activeUrl ?? process.env.M7_UTILITY_TELEMETRY_URL;
+  const marketUrl = marketIntegration?.activeUrl ?? process.env.M7_MARKET_PRICE_URL;
 
   const utilityPromise = utilityUrl
-    ? fetchJson(utilityUrl, "M7_UTILITY_TELEMETRY").then(normalizeUtility).catch(() => null)
+    ? fetchJson(utilityUrl, utilityIntegration, "M7_UTILITY_TELEMETRY").then(normalizeUtility).catch(() => null)
     : Promise.resolve(null);
   const marketPromise = marketUrl
-    ? fetchJson(marketUrl, "M7_MARKET_PRICE").then(normalizeMarket).catch(() => null)
+    ? fetchJson(marketUrl, marketIntegration, "M7_MARKET_PRICE").then(normalizeMarket).catch(() => null)
     : Promise.resolve(null);
 
   const [utilityRaw, marketRaw] = await Promise.all([utilityPromise, marketPromise]);
