@@ -220,24 +220,24 @@
       "owner": "Power Balancing"
     },
     {
-      "id": "tenant_strategy_analyst",
-      "displayName": "Tenant Strategy Analyst",
+      "id": "commercial_strategy_analyst",
+      "displayName": "Commercial Strategy Analyst",
       "module": "m8",
       "model": "sonnet",
       "promptPath": "fastapi/agents/roles/m8_tenant.yaml",
       "owner": "Tenant Fit"
     },
     {
-      "id": "revenue_finops_analyst",
-      "displayName": "Revenue FinOps Analyst",
+      "id": "pricing_analyst",
+      "displayName": "Pricing Analyst",
       "module": "m8",
       "model": "sonnet",
       "promptPath": "fastapi/agents/roles/m8_tenant.yaml",
       "owner": "Tenant Fit"
     },
     {
-      "id": "portfolio_risk_analyst",
-      "displayName": "Portfolio Risk Analyst",
+      "id": "risk_underwriting_analyst",
+      "displayName": "Risk Underwriting Analyst",
       "module": "m8",
       "model": "sonnet",
       "promptPath": "fastapi/agents/roles/m8_tenant.yaml",
